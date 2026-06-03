@@ -75,10 +75,12 @@ async function loadVotes(){
 async function submitVote(payload){
   const res = await fetch('/api/vote', {
     method: 'POST',
-    headers: { 'Content-Type':'application/json' },
+    headers: { 'Content-Type':'application/json', 'Accept':'application/json' },
     body: JSON.stringify(payload),
   });
-  return res.json();
+  let data = null;
+  try { data = await res.json(); } catch { data = null; } // respuesta no-JSON (p. ej. error del host)
+  return { status: res.status, data };
 }
 
 // --- Render del tablero ----------------------------------------------------
@@ -170,18 +172,23 @@ function setupForm(){
 
     btn.disabled = true;
     try {
-      const data = await submitVote(payload);
-      if (!data.ok){
-        toast((data.errors && data.errors[0]) || 'No se pudo guardar');
+      const { status, data } = await submitVote(payload);
+
+      if (data && data.ok){
+        myVote = data.you;
+        renderPredictions(data.votes || []);
+        reflectMyVote();
+        toast(data.updated ? '¡Predicción actualizada! ✨' : '¡Predicción guardada! 🎈');
+        $('.board').scrollIntoView({ behavior:'smooth' });
         return;
       }
-      myVote = data.you;
-      renderPredictions(data.votes || []);
-      reflectMyVote();
-      toast(data.updated ? '¡Predicción actualizada! ✨' : '¡Predicción guardada! 🎈');
-      $('.board').scrollIntoView({ behavior:'smooth' });
+
+      // El servidor respondió, pero con error
+      if (data && data.errors && data.errors[0]) toast(data.errors[0]);
+      else toast(`No se pudo guardar (error ${status || '?'})`);
     } catch {
-      toast('No hay conexión con el servidor');
+      // Falló la conexión de red (fetch no llegó al servidor)
+      toast('Sin conexión. Revisa tu internet e inténtalo de nuevo.');
     } finally {
       btn.disabled = false;
     }
@@ -190,7 +197,7 @@ function setupForm(){
   // Copiar quiniela
   $('#copyAll').addEventListener('click', async () => {
     const items = [...document.querySelectorAll('#predictionList .pred-item')];
-    const lines = ['🧸 Quiniela de nacimiento · Eliot José',
+    const lines = ['🧸 Quiniela de nacimiento · Bebé Eliot',
                    `Fecha probable de parto: ${$('#eddLong').textContent}`, ''];
     items.forEach(li => {
       const name = li.querySelector('.pred-name').textContent.replace('tú','').trim();

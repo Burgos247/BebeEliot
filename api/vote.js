@@ -1,21 +1,17 @@
 /* POST /api/vote → registra o actualiza el voto de este dispositivo.
    Reglas: 1 voto por dispositivo (cookie) y nombre único entre dispositivos. */
-const { getAll, setVote, ensureDevice, voterKey, getIP, hash, validVote, publicVotes } = require('./_lib');
+const { getAll, setVote, ensureDevice, voterKey, getIP, hash, validVote, publicVotes, send, readJsonBody } = require('./_lib');
 
 module.exports = async (req, res) => {
-  if (req.method !== 'POST'){ res.status(405).json({ ok:false, errors:['Método no permitido'] }); return; }
-
-  const device = ensureDevice(req, res);
-
-  // El body puede venir ya parseado (Vercel) o como string.
-  let body = req.body;
-  if (typeof body === 'string'){ try { body = JSON.parse(body || '{}'); } catch { body = {}; } }
-  if (!body || typeof body !== 'object') body = {};
-
-  const { errors, vote } = validVote(body);
-  if (errors.length){ res.status(400).json({ ok:false, errors }); return; }
-
   try {
+    if (req.method !== 'POST') return send(res, 405, { ok:false, errors:['Método no permitido'] });
+
+    const device = ensureDevice(req, res);
+    const body = await readJsonBody(req);
+
+    const { errors, vote } = validVote(body);
+    if (errors.length) return send(res, 400, { ok:false, errors });
+
     const store = await getAll();
     const key = voterKey(device);
 
@@ -24,8 +20,7 @@ module.exports = async (req, res) => {
     const taken = Object.entries(store)
       .some(([k, v]) => k !== key && v.name.toLowerCase() === wanted);
     if (taken){
-      res.status(409).json({ ok:false, errors:['Ese nombre ya tiene una predicción. Prueba con otro (p. ej. añade tu apellido o «Tía/Tío»).'] });
-      return;
+      return send(res, 409, { ok:false, errors:['Ese nombre ya tiene una predicción. Prueba con otro (p. ej. añade tu apellido o «Tía/Tío»).'] });
     }
 
     const existed = Boolean(store[key]);
@@ -33,10 +28,10 @@ module.exports = async (req, res) => {
     await setVote(key, rec);
     store[key] = rec;
 
-    res.status(200).json({ ok:true, updated:existed, you:vote, votes:publicVotes(store) });
+    return send(res, 200, { ok:true, updated:existed, you:vote, votes:publicVotes(store) });
   } catch (e) {
     const kv = e && e.code === 'KV_NOT_CONFIGURED';
-    res.status(kv ? 503 : 500).json({
+    return send(res, kv ? 503 : 500, {
       ok:false,
       errors:[ kv ? 'Falta configurar el almacén KV en Vercel.' : 'No se pudo guardar tu predicción.' ],
     });

@@ -113,6 +113,30 @@ function publicVotes(store){
     .sort((a, b) => a.date.localeCompare(b.date));
 }
 
+// --- Helpers HTTP nativos (no dependemos de los helpers de Vercel) --------
+function send(res, code, obj){
+  if (!res.headersSent){
+    res.statusCode = code;
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+  }
+  res.end(JSON.stringify(obj));
+}
+
+// Lee el body JSON ya parseado por Vercel o, si no, desde el stream.
+async function readJsonBody(req){
+  if (req.body !== undefined){
+    if (typeof req.body === 'string'){ try { return JSON.parse(req.body || '{}'); } catch { return {}; } }
+    if (req.body && typeof req.body === 'object') return req.body;
+  }
+  try {
+    const chunks = [];
+    for await (const c of req) chunks.push(c);
+    const raw = Buffer.concat(chunks).toString('utf8');
+    return JSON.parse(raw || '{}');
+  } catch { return {}; }
+}
+
 module.exports = {
   getAll, setVote, ensureDevice, voterKey, getIP, hash, validVote, publicVotes,
+  send, readJsonBody,
 };

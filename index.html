@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiniela de Nacimiento · Eliot José 🧸</title>
+  <meta name="description" content="¿Cuándo nacerá Eliot José? Participa en la quiniela y adivina el día. ¡Gana quien se acerque más!" />
+
+  <!-- Open Graph para compartir el enlace -->
+  <meta property="og:title" content="¿Cuándo nacerá Eliot José? 🧸" />
+  <meta property="og:description" content="Participa en la quiniela del nacimiento. Adivina el día y gana quien más se acerque." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧸</text></svg>" />
+</head>
+<body>
+
+  <!-- Globos / nubes decorativas de fondo -->
+  <div class="sky" aria-hidden="true">
+    <span class="balloon b1"></span>
+    <span class="balloon b2"></span>
+    <span class="balloon b3"></span>
+    <span class="balloon b4"></span>
+    <span class="cloud c1"></span>
+    <span class="cloud c2"></span>
+    <span class="cloud c3"></span>
+  </div>
+
+  <!-- ================= HERO ================= -->
+  <header class="hero">
+    <p class="eyebrow">Baby Shower · Quiniela de Nacimiento</p>
+
+    <div class="bear-stage">
+      <!-- Osito protagonista (SVG) -->
+      <div class="bear-balloon" aria-hidden="true"></div>
+      <svg class="bear" viewBox="0 0 240 250" role="img" aria-label="Osito de peluche con moño azul">
+        <defs>
+          <radialGradient id="furBody" cx="40%" cy="35%" r="75%">
+            <stop offset="0%" stop-color="#f6e6cf"/>
+            <stop offset="100%" stop-color="#e7cfa9"/>
+          </radialGradient>
+          <radialGradient id="furInner" cx="50%" cy="40%" r="70%">
+            <stop offset="0%" stop-color="#fbf3e6"/>
+            <stop offset="100%" stop-color="#f3e2c6"/>
+          </radialGradient>
+          <linearGradient id="bow" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#cfe2f3"/>
+            <stop offset="100%" stop-color="#a9c9e8"/>
+          </linearGradient>
+        </defs>
+
+        <!-- piernas -->
+        <ellipse cx="78"  cy="205" rx="38" ry="32" fill="url(#furBody)"/>
+        <ellipse cx="162" cy="205" rx="38" ry="32" fill="url(#furBody)"/>
+        <ellipse cx="78"  cy="210" rx="20" ry="16" fill="url(#furInner)"/>
+        <ellipse cx="162" cy="210" rx="20" ry="16" fill="url(#furInner)"/>
+        <!-- huellitas -->
+        <ellipse cx="78"  cy="216" rx="7" ry="6" fill="#e3b98e"/>
+        <ellipse cx="162" cy="216" rx="7" ry="6" fill="#e3b98e"/>
+        <circle cx="70" cy="204" r="2.6" fill="#e3b98e"/><circle cx="78" cy="201" r="2.6" fill="#e3b98e"/><circle cx="86" cy="204" r="2.6" fill="#e3b98e"/>
+        <circle cx="154" cy="204" r="2.6" fill="#e3b98e"/><circle cx="162" cy="201" r="2.6" fill="#e3b98e"/><circle cx="170" cy="204" r="2.6" fill="#e3b98e"/>
+
+        <!-- brazos -->
+        <ellipse cx="48"  cy="150" rx="24" ry="34" fill="url(#furBody)" transform="rotate(-18 48 150)"/>
+        <ellipse cx="192" cy="150" rx="24" ry="34" fill="url(#furBody)" transform="rotate(18 192 150)"/>
+
+        <!-- cuerpo -->
+        <ellipse cx="120" cy="158" rx="62" ry="58" fill="url(#furBody)"/>
+        <ellipse cx="120" cy="166" rx="40" ry="40" fill="url(#furInner)"/>
+
+        <!-- orejas -->
+        <circle cx="70"  cy="58" r="26" fill="url(#furBody)"/>
+        <circle cx="170" cy="58" r="26" fill="url(#furBody)"/>
+        <circle cx="70"  cy="60" r="13" fill="#e3b98e"/>
+        <circle cx="170" cy="60" r="13" fill="#e3b98e"/>
+
+        <!-- cabeza -->
+        <circle cx="120" cy="86" r="62" fill="url(#furBody)"/>
+        <!-- hocico -->
+        <ellipse cx="120" cy="104" rx="34" ry="28" fill="url(#furInner)"/>
+
+        <!-- mejillas -->
+        <circle cx="78"  cy="100" r="11" fill="#f3b8b0" opacity="0.55"/>
+        <circle cx="162" cy="100" r="11" fill="#f3b8b0" opacity="0.55"/>
+
+        <!-- ojos -->
+        <circle cx="98"  cy="84" r="8" fill="#5b4636"/>
+        <circle cx="142" cy="84" r="8" fill="#5b4636"/>
+        <circle cx="100" cy="81" r="2.6" fill="#fff"/>
+        <circle cx="144" cy="81" r="2.6" fill="#fff"/>
+        <!-- cejitas -->
+        <path d="M88 70 q10 -7 20 -1" stroke="#c9a06a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <path d="M132 70 q10 -7 20 0" stroke="#c9a06a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+
+        <!-- nariz y boca -->
+        <ellipse cx="120" cy="100" rx="9" ry="7" fill="#6b513c"/>
+        <path d="M120 107 v8" stroke="#6b513c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <path d="M120 115 q-9 9 -17 3" stroke="#6b513c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <path d="M120 115 q9 9 17 3"  stroke="#6b513c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+
+        <!-- moño azul -->
+        <g transform="translate(120 150)">
+          <path d="M0 0 C-30 -22 -52 -16 -52 4 C-52 24 -28 24 0 4 Z" fill="url(#bow)"/>
+          <path d="M0 0 C30 -22 52 -16 52 4 C52 24 28 24 0 4 Z" fill="url(#bow)"/>
+          <path d="M-52 4 C-44 6 -36 6 -28 2" stroke="#8fb4dc" stroke-width="2" fill="none"/>
+          <path d="M52 4 C44 6 36 6 28 2" stroke="#8fb4dc" stroke-width="2" fill="none"/>
+          <circle cx="0" cy="2" r="11" fill="#bcd6ef"/>
+          <circle cx="0" cy="2" r="11" fill="none" stroke="#8fb4dc" stroke-width="1.5"/>
+        </g>
+      </svg>
+    </div>
+
+    <h1 class="title">Eliot José</h1>
+    <p class="subtitle">¿Qué día llegará nuestro osito? 🧸💙</p>
+
+    <div class="countdown-card">
+      <p class="cd-label">Mamá está de</p>
+      <p class="cd-weeks"><strong id="currentWeeks">34</strong> semanas</p>
+      <div class="cd-row">
+        <div>
+          <span class="cd-num" id="edd">15 jul</span>
+          <span class="cd-cap">Fecha probable de parto</span>
+        </div>
+        <div>
+          <span class="cd-num" id="daysLeft">—</span>
+          <span class="cd-cap">Días para la fecha estimada</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="#jugar" class="btn btn-primary btn-hero">Hacer mi predicción ✨</a>
+  </header>
+
+  <!-- ================= CÓMO FUNCIONA ================= -->
+  <section class="how">
+    <h2>¿Cómo se juega?</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="step-emoji">📅</span>
+        <h3>Elige una fecha</h3>
+        <p>Adivina el día en que crees que nacerá Eliot José.</p>
+      </div>
+      <div class="step">
+        <span class="step-emoji">🧸</span>
+        <h3>Deja tu nombre</h3>
+        <p>Registra tu predicción para que quede guardada en la quiniela.</p>
+      </div>
+      <div class="step">
+        <span class="step-emoji">🏆</span>
+        <h3>Gana quien más se acerque</h3>
+        <p>El que adivine el día exacto —o el más cercano— se lleva el premio.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FORMULARIO / QUINIELA ================= -->
+  <section id="jugar" class="play">
+    <h2>Tu predicción</h2>
+    <p class="play-sub">La mamá está de 34 semanas. La fecha probable de parto es alrededor del <strong id="eddLong">15 de julio de 2026</strong>, ¡pero los bebés deciden! 😉</p>
+
+    <form id="predictionForm" class="card form" autocomplete="off">
+      <label>
+        <span>Tu nombre</span>
+        <input type="text" id="name" name="name" placeholder="Ej. Tía Andrea" required maxlength="40" />
+      </label>
+
+      <label>
+        <span>Fecha en que nacerá 🍼</span>
+        <input type="date" id="date" name="date" required />
+        <small class="hint" id="dateHint"></small>
+      </label>
+
+      <div class="grid-2">
+        <label>
+          <span>Hora (opcional)</span>
+          <input type="time" id="time" name="time" />
+        </label>
+        <label>
+          <span>Peso en kg (opcional)</span>
+          <input type="number" id="weight" name="weight" step="0.05" min="1" max="6" placeholder="Ej. 3.4" />
+        </label>
+      </div>
+
+      <label>
+        <span>Mensaje para Eliot (opcional)</span>
+        <textarea id="message" name="message" rows="2" maxlength="160" placeholder="¡Te esperamos con mucho amor! 💙"></textarea>
+      </label>
+
+      <button type="submit" class="btn btn-primary">Guardar mi predicción 🧸</button>
+      <p class="form-note">Tu predicción se guarda en este dispositivo.</p>
+    </form>
+  </section>
+
+  <!-- ================= PREDICCIONES GUARDADAS ================= -->
+  <section class="board">
+    <h2>Predicciones registradas <span id="count" class="count">0</span></h2>
+    <p class="board-sub" id="boardEmpty">Aún no hay predicciones en este dispositivo. ¡Sé la primera persona en adivinar! 🎈</p>
+    <ul id="predictionList" class="pred-list"></ul>
+    <div class="board-actions" id="boardActions" hidden>
+      <button class="btn btn-ghost" id="copyAll">Copiar quiniela 📋</button>
+    </div>
+  </section>
+
+  <!-- ================= GALERÍA ================= -->
+  <section class="gallery">
+    <h2>Nuestra decoración 💙</h2>
+    <p class="gallery-sub">Inspiración osito · globos azules y blancos · nubes y lucecitas</p>
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Las fotos reales se cargan desde /images. Si no existen, se ocultan. -->
+      <figure><img src="images/photo1.jpg" alt="Mesa principal con arco de globos" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+      <figure><img src="images/photo2.jpg" alt="Centro de mesa osito con globo de confeti" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+      <figure><img src="images/photo3.jpg" alt="Arco de globos azul y blanco" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+      <figure><img src="images/photo4.jpg" alt="Nube de globos con lucecitas" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+      <figure><img src="images/photo5.jpg" alt="Ilustración del osito de Eliot" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+      <figure><img src="images/photo6.jpg" alt="Decoración del baby shower" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+    </div>
+    <p class="gallery-note" id="galleryNote" hidden>📸 Agrega tus fotos en la carpeta <code>/images</code> (photo1.jpg … photo6.jpg) para que aparezcan aquí.</p>
+  </section>
+
+  <footer class="footer">
+    <div class="bear-mini" aria-hidden="true">🧸</div>
+    <p>Con mucho amor para <strong>Eliot José</strong></p>
+    <p class="footer-small">Quiniela de nacimiento · Baby Shower 💙</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

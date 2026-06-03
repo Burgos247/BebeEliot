@@ -164,6 +164,15 @@ const server = http.createServer(async (req, res) => {
 
       const store = readVotes();
       const key = voterKey(device);
+
+      // Nombre único: ese nombre no puede estar usado por OTRO dispositivo.
+      const wanted = vote.name.toLowerCase();
+      const taken = Object.entries(store)
+        .some(([k, v]) => k !== key && v.name.toLowerCase() === wanted);
+      if (taken){
+        return sendJSON(res, 409, { ok:false, errors:['Ese nombre ya tiene una predicción. Prueba con otro (p. ej. añade tu apellido o «Tía/Tío»).'] });
+      }
+
       const existed = Boolean(store[key]);
       store[key] = { ...vote, ipHash: hash('ip:' + getIP(req)), updatedAt: new Date().toISOString() };
       writeVotes(store);

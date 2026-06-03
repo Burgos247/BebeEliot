@@ -28,9 +28,16 @@ const MIME = {
 };
 
 // --- Almacenamiento -------------------------------------------------------
+// Nota: este server.js es para ejecución LOCAL o en hosts tipo Render.
+// En Vercel se usan las funciones de /api (ver vercel.json); este archivo
+// no debe ejecutarse allí. Aun así, toleramos un FS de solo lectura.
 function ensureData(){
-  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive:true });
-  if (!fs.existsSync(DATA_FILE)) fs.writeFileSync(DATA_FILE, '{}');
+  try {
+    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive:true });
+    if (!fs.existsSync(DATA_FILE)) fs.writeFileSync(DATA_FILE, '{}');
+  } catch (e) {
+    console.warn('No se pudo preparar data/ (¿FS de solo lectura?):', e.message);
+  }
 }
 function readVotes(){
   try { return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8') || '{}'); }

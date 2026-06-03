@@ -1,0 +1,163 @@
+/* ===========================================================
+   Quiniela de Nacimiento · Eliot José 🧸
+   Servidor mínimo en Node.js (sin dependencias externas).
+   - Sirve el front-end estático (index.html, css, js, /images)
+   - API de votación con límite de 1 voto por IP (re-votar = actualizar)
+   - Las IPs NO se guardan en texto plano: se almacenan hasheadas.
+   =========================================================== */
+
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
+
+const PORT = process.env.PORT || 3000;
+const ROOT = __dirname;
+const DATA_DIR = path.join(ROOT, 'data');
+const DATA_FILE = path.join(DATA_DIR, 'votes.json');
+
+// Sal para el hash de IPs (cámbiala con la variable de entorno IP_SALT si quieres).
+const IP_SALT = process.env.IP_SALT || 'eliot-jose-baby-shower';
+
+const MIME = {
+  '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8',
+  '.js':'text/javascript; charset=utf-8', '.json':'application/json; charset=utf-8',
+  '.svg':'image/svg+xml', '.ico':'image/x-icon',
+  '.jpg':'image/jpeg', '.jpeg':'image/jpeg', '.png':'image/png',
+  '.webp':'image/webp', '.gif':'image/gif',
+};
+
+// --- Almacenamiento -------------------------------------------------------
+function ensureData(){
+  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive:true });
+  if (!fs.existsSync(DATA_FILE)) fs.writeFileSync(DATA_FILE, '{}');
+}
+function readVotes(){
+  try { return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8') || '{}'); }
+  catch { return {}; }
+}
+function writeVotes(v){
+  fs.writeFileSync(DATA_FILE, JSON.stringify(v, null, 2));
+}
+
+// --- Identificación por IP ------------------------------------------------
+function getIP(req){
+  const xff = req.headers['x-forwarded-for'];           // detrás de proxy/hosting
+  let ip = xff ? String(xff).split(',')[0].trim()
+              : (req.socket.remoteAddress || '');
+  ip = ip.replace(/^::ffff:/, '');                      // IPv4 mapeada en IPv6
+  if (ip === '::1') ip = '127.0.0.1';
+  return ip || 'unknown';
+}
+function ipKey(ip){
+  return crypto.createHash('sha256').update(IP_SALT + ':' + ip).digest('hex').slice(0, 16);
+}
+
+// --- Validación / limpieza ------------------------------------------------
+function clean(str, max){
+  return String(str == null ? '' : str).replace(/\s+/g, ' ').trim().slice(0, max);
+}
+function validVote(b){
+  const errors = [];
+  const name = clean(b.name, 40);
+  const date = clean(b.date, 10);
+  if (!name) errors.push('El nombre es obligatorio.');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) errors.push('La fecha no es válida.');
+  const time = /^\d{2}:\d{2}$/.test(b.time || '') ? b.time : '';
+  let weight = '';
+  if (b.weight !== '' && b.weight != null){
+    const w = Number(b.weight);
+    if (!Number.isNaN(w) && w >= 1 && w <= 6) weight = String(w);
+  }
+  const message = clean(b.message, 160);
+  return { errors, vote:{ name, date, time, weight, message } };
+}
+
+// --- Salida pública (sin IPs ni claves) -----------------------------------
+function publicVotes(store){
+  return Object.values(store)
+    .map(v => ({ name:v.name, date:v.date, time:v.time, weight:v.weight, message:v.message, updatedAt:v.updatedAt }))
+    .sort((a,b) => a.date.localeCompare(b.date));
+}
+
+// --- Helpers HTTP ---------------------------------------------------------
+function sendJSON(res, code, obj){
+  const body = JSON.stringify(obj);
+  res.writeHead(code, { 'Content-Type':'application/json; charset=utf-8' });
+  res.end(body);
+}
+function readBody(req){
+  return new Promise((resolve, reject) => {
+    let data = '';
+    req.on('data', (c) => {
+      data += c;
+      if (data.length > 1e5) { reject(new Error('payload demasiado grande')); req.destroy(); }
+    });
+    req.on('end', () => resolve(data));
+    req.on('error', reject);
+  });
+}
+function serveStatic(req, res){
+  let urlPath = decodeURIComponent(req.url.split('?')[0]);
+  if (urlPath === '/') urlPath = '/index.html';
+  // Evitar path traversal
+  const filePath = path.join(ROOT, path.normalize(urlPath).replace(/^(\.\.[/\\])+/, ''));
+  if (!filePath.startsWith(ROOT)) { res.writeHead(403); return res.end('Forbidden'); }
+
+  fs.readFile(filePath, (err, content) => {
+    if (err) { res.writeHead(404, {'Content-Type':'text/plain; charset=utf-8'}); return res.end('No encontrado'); }
+    const ext = path.extname(filePath).toLowerCase();
+    res.writeHead(200, { 'Content-Type': MIME[ext] || 'application/octet-stream' });
+    res.end(content);
+  });
+}
+
+// --- Servidor -------------------------------------------------------------
+ensureData();
+
+const server = http.createServer(async (req, res) => {
+  const url = req.url.split('?')[0];
+
+  // GET /api/votes  → lista pública + tu voto actual (según tu IP)
+  if (req.method === 'GET' && url === '/api/votes'){
+    const store = readVotes();
+    const mine = store[ipKey(getIP(req))] || null;
+    return sendJSON(res, 200, {
+      votes: publicVotes(store),
+      you: mine ? { name:mine.name, date:mine.date, time:mine.time, weight:mine.weight, message:mine.message } : null,
+    });
+  }
+
+  // POST /api/vote → registra o actualiza el voto de esta IP
+  if (req.method === 'POST' && url === '/api/vote'){
+    try {
+      const body = JSON.parse(await readBody(req) || '{}');
+      const { errors, vote } = validVote(body);
+      if (errors.length) return sendJSON(res, 400, { ok:false, errors });
+
+      const store = readVotes();
+      const key = ipKey(getIP(req));
+      const existed = Boolean(store[key]);
+      store[key] = { ...vote, updatedAt: new Date().toISOString() };
+      writeVotes(store);
+
+      return sendJSON(res, 200, {
+        ok: true,
+        updated: existed,
+        you: vote,
+        votes: publicVotes(store),
+      });
+    } catch (e) {
+      return sendJSON(res, 400, { ok:false, errors:['No se pudo procesar la solicitud.'] });
+    }
+  }
+
+  // Archivos estáticos
+  if (req.method === 'GET') return serveStatic(req, res);
+
+  res.writeHead(405); res.end('Método no permitido');
+});
+
+server.listen(PORT, () => {
+  console.log(`🧸 Quiniela de Eliot José corriendo en http://localhost:${PORT}`);
+});

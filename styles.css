@@ -122,6 +122,10 @@ h2{font-size:clamp(1.5rem,5vw,2rem);text-align:center;color:var(--blue-deep);mar
 .pred-date .m{display:block;font-size:.7rem;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
 .pred-main{flex:1;min-width:0}
 .pred-name{font-family:'Baloo 2';font-size:1.1rem;color:var(--ink)}
+.you-tag{display:inline-block;background:var(--blue-deep);color:#fff;font-family:'Quicksand';
+  font-weight:700;font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;
+  padding:1px 8px;border-radius:50px;vertical-align:middle}
+.board-sub code,.form-note code{background:var(--blue-mist);padding:2px 6px;border-radius:6px;font-size:.9em}
 .pred-meta{font-size:.82rem;color:var(--ink-soft)}
 .pred-msg{font-size:.85rem;color:var(--ink-soft);font-style:italic;margin-top:2px}
 .pred-del{background:none;border:none;cursor:pointer;color:#c7a6a6;font-size:1.2rem;padding:4px;line-height:1}

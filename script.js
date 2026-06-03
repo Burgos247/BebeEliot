@@ -1,16 +1,18 @@
 /* ===========================================================
    Quiniela de Nacimiento · Eliot José 🧸
-   Lógica de fechas + registro de predicciones (localStorage)
+   Front-end: cálculo de fechas + votación contra la API (/api)
+   Una predicción por IP (sin login). Re-votar actualiza la tuya.
    =========================================================== */
 
 // --- Configuración base ---------------------------------------------------
 // Mamá estaba de 34 semanas el 2026-06-03 → Fecha Probable de Parto (40 sem)
 const EDD = new Date(2026, 6, 15);            // 15 de julio de 2026 (mes 6 = julio)
-const STORAGE_KEY = 'quiniela_eliot_jose';
 
 const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 const MESES_LARGO = ['enero','febrero','marzo','abril','mayo','junio','julio',
                      'agosto','septiembre','octubre','noviembre','diciembre'];
+
+let myVote = null;   // predicción asociada a esta IP (si existe)
 
 // --- Utilidades -----------------------------------------------------------
 const $ = (sel) => document.querySelector(sel);
@@ -19,6 +21,11 @@ function startOfDay(d){ return new Date(d.getFullYear(), d.getMonth(), d.getDate
 function toISO(d){ return d.toISOString().slice(0,10); }
 function fromISO(s){ const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); }
 function daysBetween(a,b){ return Math.round((startOfDay(a) - startOfDay(b)) / 86400000); }
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, (c) =>
+    ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+}
 
 // --- Cálculo de semanas y días --------------------------------------------
 function updateCountdown(){
@@ -32,41 +39,50 @@ function updateCountdown(){
   $('#eddLong').textContent = `${EDD.getDate()} de ${MESES_LARGO[EDD.getMonth()]} de ${EDD.getFullYear()}`;
 
   const daysLeftEl = $('#daysLeft');
-  if (daysToEDD > 0)      daysLeftEl.textContent = daysToEDD;
+  if (daysToEDD > 0)        daysLeftEl.textContent = daysToEDD;
   else if (daysToEDD === 0) daysLeftEl.textContent = '¡Hoy!';
-  else                    daysLeftEl.textContent = '¡Ya viene!';
+  else                      daysLeftEl.textContent = '¡Ya viene!';
 }
 
 // --- Configurar el selector de fecha --------------------------------------
 function setupDateInput(){
   const input = $('#date');
   const today = startOfDay(new Date());
-  const min = today;                                   // desde hoy
   const max = new Date(EDD); max.setDate(max.getDate() + 35); // hasta ~5 sem después de la FPP
 
-  input.min = toISO(min);
+  input.min = toISO(today);
   input.max = toISO(max);
-  input.value = toISO(EDD);                            // sugerencia: la FPP
+  if (!input.value) input.value = toISO(EDD);          // sugerencia: la FPP
 
   $('#dateHint').textContent =
-    `Puedes elegir entre el ${min.getDate()} de ${MESES_LARGO[min.getMonth()]} y el ${max.getDate()} de ${MESES_LARGO[max.getMonth()]}.`;
+    `Puedes elegir entre el ${today.getDate()} de ${MESES_LARGO[today.getMonth()]} y el ${max.getDate()} de ${MESES_LARGO[max.getMonth()]}.`;
 }
 
-// --- Almacenamiento -------------------------------------------------------
-function loadPredictions(){
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
-  catch { return []; }
+// --- API ------------------------------------------------------------------
+async function loadVotes(){
+  try {
+    const res = await fetch('/api/votes', { headers:{ 'Accept':'application/json' } });
+    if (!res.ok) throw new Error('bad status');
+    const data = await res.json();
+    myVote = data.you || null;
+    renderPredictions(data.votes || []);
+    reflectMyVote();
+  } catch {
+    showServerWarning();
+  }
 }
-function savePredictions(list){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+
+async function submitVote(payload){
+  const res = await fetch('/api/vote', {
+    method: 'POST',
+    headers: { 'Content-Type':'application/json' },
+    body: JSON.stringify(payload),
+  });
+  return res.json();
 }
 
 // --- Render del tablero ----------------------------------------------------
-function renderPredictions(){
-  const list = loadPredictions()
-    .slice()
-    .sort((a,b) => a.date.localeCompare(b.date));
-
+function renderPredictions(list){
   const ul = $('#predictionList');
   const empty = $('#boardEmpty');
   const actions = $('#boardActions');
@@ -85,36 +101,53 @@ function renderPredictions(){
     if (p.time)   meta.push(`🕐 ${p.time}`);
     if (p.weight) meta.push(`⚖️ ${p.weight} kg`);
 
+    const isMine = myVote && myVote.name === p.name && myVote.date === p.date;
+
     li.innerHTML = `
       <div class="pred-date">
         <span class="d">${d.getDate()}</span>
         <span class="m">${MESES[d.getMonth()]}</span>
       </div>
       <div class="pred-main">
-        <div class="pred-name">${escapeHtml(p.name)}</div>
+        <div class="pred-name">${escapeHtml(p.name)} ${isMine ? '<span class="you-tag">tú</span>' : ''}</div>
         ${meta.length ? `<div class="pred-meta">${meta.join(' · ')}</div>` : ''}
         ${p.message ? `<div class="pred-msg">“${escapeHtml(p.message)}”</div>` : ''}
       </div>
-      <button class="pred-del" title="Eliminar" data-id="${p.id}">✕</button>
     `;
     ul.appendChild(li);
   });
 }
 
-function escapeHtml(str){
-  return String(str).replace(/[&<>"']/g, (c) =>
-    ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+// --- Reflejar el voto propio en el formulario -----------------------------
+function reflectMyVote(){
+  const note = $('#myVoteNote');
+  const btn = $('#submitBtn');
+  if (myVote){
+    $('#name').value    = myVote.name || '';
+    $('#date').value    = myVote.date || $('#date').value;
+    $('#time').value    = myVote.time || '';
+    $('#weight').value  = myVote.weight || '';
+    $('#message').value = myVote.message || '';
+    btn.textContent = 'Actualizar mi predicción 🧸';
+    note.hidden = false;
+    note.textContent = 'Ya registraste tu predicción desde esta conexión. Puedes editarla y volver a guardar.';
+  } else {
+    btn.textContent = 'Guardar mi predicción 🧸';
+    note.hidden = true;
+  }
+}
+
+function showServerWarning(){
+  const empty = $('#boardEmpty');
+  empty.hidden = false;
+  empty.innerHTML = '⚠️ La quiniela necesita estar abierta desde el servidor para registrar votos.<br>Ejecuta <code>node server.js</code> y entra por <code>http://localhost:3000</code>.';
 }
 
 // --- Toast -----------------------------------------------------------------
 let toastTimer;
 function toast(msg){
   let el = $('.toast');
-  if (!el){
-    el = document.createElement('div');
-    el.className = 'toast';
-    document.body.appendChild(el);
-  }
+  if (!el){ el = document.createElement('div'); el.className = 'toast'; document.body.appendChild(el); }
   el.textContent = msg;
   requestAnimationFrame(() => el.classList.add('show'));
   clearTimeout(toastTimer);
@@ -123,61 +156,50 @@ function toast(msg){
 
 // --- Eventos ---------------------------------------------------------------
 function setupForm(){
-  $('#predictionForm').addEventListener('submit', (e) => {
+  $('#predictionForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const name = $('#name').value.trim();
-    const date = $('#date').value;
-    if (!name || !date) return;
-
-    const list = loadPredictions();
-
-    // Evitar duplicado exacto (mismo nombre + misma fecha)
-    if (list.some(p => p.name.toLowerCase() === name.toLowerCase() && p.date === date)){
-      toast('Ya existe esa predicción 🧸');
-      return;
-    }
-
-    list.push({
-      id: Date.now().toString(36) + Math.random().toString(36).slice(2,6),
-      name,
-      date,
-      time: $('#time').value || '',
-      weight: $('#weight').value || '',
+    const btn = $('#submitBtn');
+    const payload = {
+      name:    $('#name').value.trim(),
+      date:    $('#date').value,
+      time:    $('#time').value || '',
+      weight:  $('#weight').value || '',
       message: $('#message').value.trim(),
-    });
-    savePredictions(list);
-    renderPredictions();
+    };
+    if (!payload.name || !payload.date) return;
 
-    e.target.reset();
-    setupDateInput();
-    toast('¡Predicción guardada! 🎈');
-    $('.board').scrollIntoView({ behavior:'smooth' });
-  });
-
-  // Eliminar
-  $('#predictionList').addEventListener('click', (e) => {
-    const btn = e.target.closest('.pred-del');
-    if (!btn) return;
-    if (!confirm('¿Eliminar esta predicción?')) return;
-    savePredictions(loadPredictions().filter(p => p.id !== btn.dataset.id));
-    renderPredictions();
-    toast('Predicción eliminada');
+    btn.disabled = true;
+    try {
+      const data = await submitVote(payload);
+      if (!data.ok){
+        toast((data.errors && data.errors[0]) || 'No se pudo guardar');
+        return;
+      }
+      myVote = data.you;
+      renderPredictions(data.votes || []);
+      reflectMyVote();
+      toast(data.updated ? '¡Predicción actualizada! ✨' : '¡Predicción guardada! 🎈');
+      $('.board').scrollIntoView({ behavior:'smooth' });
+    } catch {
+      toast('No hay conexión con el servidor');
+    } finally {
+      btn.disabled = false;
+    }
   });
 
   // Copiar quiniela
   $('#copyAll').addEventListener('click', async () => {
-    const list = loadPredictions().slice().sort((a,b)=>a.date.localeCompare(b.date));
-    const lines = ['🧸 Quiniela de nacimiento · Eliot José', `Fecha probable de parto: ${$('#eddLong').textContent}`, ''];
-    list.forEach(p => {
-      const d = fromISO(p.date);
-      let line = `• ${p.name}: ${d.getDate()} de ${MESES_LARGO[d.getMonth()]}`;
-      if (p.time) line += ` a las ${p.time}`;
-      if (p.weight) line += ` (${p.weight} kg)`;
-      lines.push(line);
+    const items = [...document.querySelectorAll('#predictionList .pred-item')];
+    const lines = ['🧸 Quiniela de nacimiento · Eliot José',
+                   `Fecha probable de parto: ${$('#eddLong').textContent}`, ''];
+    items.forEach(li => {
+      const name = li.querySelector('.pred-name').textContent.replace('tú','').trim();
+      const d = li.querySelector('.pred-date .d').textContent;
+      const m = li.querySelector('.pred-date .m').textContent;
+      lines.push(`• ${name}: ${d} ${m}`);
     });
-    const text = lines.join('\n');
     try {
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(lines.join('\n'));
       toast('Quiniela copiada 📋');
     } catch {
       toast('No se pudo copiar automáticamente');
@@ -187,7 +209,6 @@ function setupForm(){
 
 // --- Galería: mostrar nota si no hay fotos --------------------------------
 function checkGallery(){
-  // Damos tiempo a que las imágenes carguen o fallen
   setTimeout(() => {
     const grid = $('#galleryGrid');
     if (grid && grid.children.length === 0){
@@ -202,6 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCountdown();
   setupDateInput();
   setupForm();
-  renderPredictions();
+  loadVotes();
   checkGallery();
 });

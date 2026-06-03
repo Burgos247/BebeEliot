@@ -1,0 +1,14 @@
+{
+  "name": "quiniela-eliot-jose",
+  "version": "1.0.0",
+  "description": "Quiniela de nacimiento para Eliot José: amigos y familia adivinan el día. Voto por IP, sin login.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "license": "MIT",
+  "private": true
+}

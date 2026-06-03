@@ -190,15 +190,16 @@
         <textarea id="message" name="message" rows="2" maxlength="160" placeholder="¡Te esperamos con mucho amor! 💙"></textarea>
       </label>
 
-      <button type="submit" class="btn btn-primary">Guardar mi predicción 🧸</button>
-      <p class="form-note">Tu predicción se guarda en este dispositivo.</p>
+      <button type="submit" class="btn btn-primary" id="submitBtn">Guardar mi predicción 🧸</button>
+      <p class="form-note" id="myVoteNote" hidden></p>
+      <p class="form-note">Solo se permite una predicción por conexión (IP). Si vuelves a votar, se actualiza la tuya.</p>
     </form>
   </section>
 
   <!-- ================= PREDICCIONES GUARDADAS ================= -->
   <section class="board">
     <h2>Predicciones registradas <span id="count" class="count">0</span></h2>
-    <p class="board-sub" id="boardEmpty">Aún no hay predicciones en este dispositivo. ¡Sé la primera persona en adivinar! 🎈</p>
+    <p class="board-sub" id="boardEmpty">Aún no hay predicciones. ¡Sé la primera persona en adivinar! 🎈</p>
     <ul id="predictionList" class="pred-list"></ul>
     <div class="board-actions" id="boardActions" hidden>
       <button class="btn btn-ghost" id="copyAll">Copiar quiniela 📋</button>

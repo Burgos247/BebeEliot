@@ -1,0 +1,7 @@
+# Datos de votación (no versionar los votos reales)
+data/votes.json
+
+# Node
+node_modules/
+npm-debug.log*
+.DS_Store

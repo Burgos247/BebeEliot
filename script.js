@@ -140,7 +140,7 @@ function reflectMyVote(){
 function showServerWarning(){
   const empty = $('#boardEmpty');
   empty.hidden = false;
-  empty.innerHTML = '⚠️ La quiniela necesita estar abierta desde el servidor para registrar votos.<br>Ejecuta <code>node server.js</code> y entra por <code>http://localhost:3000</code>.';
+  empty.innerHTML = '⚠️ No se pudieron cargar las predicciones en este momento. Vuelve a intentarlo en unos segundos.';
 }
 
 // --- Toast -----------------------------------------------------------------

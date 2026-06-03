@@ -44,13 +44,36 @@ node server.js
 
 ### Publicarla para tus amigos
 
-Como necesita servidor (para leer la IP), **GitHub Pages no sirve** aquí. Opciones
-gratuitas fáciles donde subir este repo y que arranque con `node server.js`:
+Como necesita servidor (para guardar los votos), **GitHub Pages no sirve** aquí.
 
-- **Render.com** · **Railway.app** · **Fly.io** · **Glitch.com**
+#### Opción A — Vercel (recomendado, ya configurado) ✅
 
-En esos servicios, configura el comando de inicio como `node server.js`
-(o `npm start`). El puerto se toma de la variable `PORT` automáticamente.
+El repo incluye funciones serverless en `/api` (`api/votes.js`, `api/vote.js`)
+que Vercel detecta automáticamente. Para que **guarden** los votos necesitan un
+almacén **Vercel KV** (Upstash Redis), gratis:
+
+1. En el panel de **Vercel** → pestaña **Storage** → **Create Database** → **KV**
+   (Upstash Redis) y **conéctalo a este proyecto**.
+   Esto añade solo las variables `KV_REST_API_URL` y `KV_REST_API_TOKEN`.
+2. (Opcional) En **Settings → Environment Variables** añade `IP_SALT` con
+   cualquier texto secreto.
+3. Haz un **Redeploy** del proyecto.
+
+No hace falta configurar comando de build: las páginas estáticas se sirven solas
+y los archivos de `/api` se vuelven funciones.
+
+> Mientras KV no esté conectado, la página carga pero los votos no se guardan
+> (la API responde 503 «Falta configurar el almacén KV»).
+
+#### Opción B — Render / Railway / Fly.io / Glitch
+
+Usan `server.js` (almacenamiento en archivo). Configura el comando de inicio
+como `node server.js` (o `npm start`); el puerto se toma de `PORT`.
+
+> Nota: hay **dos backends equivalentes**. `server.js` (archivo local) para
+> ejecución local u hosts tipo Render; y `/api/*.js` (Vercel KV) para Vercel.
+> El front-end (`script.js`) usa las mismas rutas `/api/votes` y `/api/vote` en
+> ambos casos.
 
 ## 📅 Datos del cálculo
 
@@ -64,12 +87,16 @@ En esos servicios, configura el comando de inicio como `node server.js`
 ## 📂 Estructura
 
 ```
-server.js      → servidor + API de votación (sin dependencias)
 index.html     → página
 styles.css     → estilos
-script.js      → lógica (fechas, votación contra /api)
-package.json   → scripts de arranque
-data/          → votos guardados (data/votes.json, ignorado por git)
+script.js      → lógica del front (fechas, votación contra /api)
+server.js      → backend para local / Render (API + almacenamiento en archivo)
+api/           → backend para Vercel (funciones serverless + Vercel KV)
+  _lib.js      → helpers compartidos (KV, cookie, validación)
+  votes.js     → GET  /api/votes
+  vote.js      → POST /api/vote
+package.json   → scripts y engines
+data/          → votos en local (data/votes.json, ignorado por git)
 images/        → fotos de la decoración (ver images/README.md)
 ```
 

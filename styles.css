@@ -53,16 +53,50 @@ section,header{position:relative;z-index:1;padding:54px 22px;max-width:760px;mar
 h2{font-size:clamp(1.5rem,5vw,2rem);text-align:center;color:var(--blue-deep);margin-bottom:8px}
 
 /* ---------- Hero ---------- */
-.hero{text-align:center;padding-top:34px}
-.eyebrow{letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;font-weight:700;color:var(--blue-deep);margin:0 0 6px}
-.bear-stage{position:relative;width:230px;margin:6px auto 0;animation:bobble 4.5s ease-in-out infinite}
-@keyframes bobble{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-10px) rotate(1deg)}}
-.bear{width:230px;height:auto;filter:drop-shadow(0 18px 22px rgba(111,155,199,.28))}
-.bear-balloon{position:absolute;top:-78px;left:50%;transform:translateX(-50%);
-  width:96px;height:112px;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,#fff 0%,var(--blue-soft) 55%,var(--blue) 100%);
-  opacity:.92;box-shadow:0 10px 24px rgba(111,155,199,.3)}
-.bear-balloon::after{content:"";position:absolute;bottom:-46px;left:50%;width:2px;height:48px;background:rgba(120,150,180,.5);transform:translateX(-50%)}
+.hero{text-align:center;padding-top:26px}
+.eyebrow{position:relative;z-index:6;display:inline-block;letter-spacing:.14em;text-transform:uppercase;
+  font-size:.74rem;font-weight:700;color:var(--blue-deep);margin:0 auto;
+  background:rgba(255,255,255,.6);padding:6px 16px;border-radius:50px;box-shadow:0 4px 14px rgba(111,155,199,.12)}
+.bear-stage{position:relative;width:240px;height:330px;margin:2px auto 0;z-index:2;
+  animation:bobble 5s ease-in-out infinite}
+@keyframes bobble{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-9px) rotate(1deg)}}
+.bear{position:relative;z-index:3;width:230px;height:auto;margin-top:74px;
+  filter:drop-shadow(0 16px 20px rgba(111,155,199,.28))}
+
+/* Globo de confeti azul (como el de la decoración) */
+.bear-balloon{position:absolute;top:-6px;left:50%;transform:translateX(-50%);z-index:2;
+  width:104px;height:122px;border-radius:50% 50% 49% 49%;
+  background:
+    radial-gradient(circle at 34% 25%, rgba(255,255,255,.95) 0 7px, transparent 8px),
+    radial-gradient(circle at 60% 38%, #6f9bc7 0 3px, transparent 4px),
+    radial-gradient(circle at 42% 56%, #a9c9e8 0 2.6px, transparent 3.4px),
+    radial-gradient(circle at 68% 60%, #7aa6cf 0 2.6px, transparent 3.4px),
+    radial-gradient(circle at 50% 30%, #9cc1e3 0 2.2px, transparent 3px),
+    radial-gradient(circle at 32% 44%, #7aa6cf 0 2.2px, transparent 3px),
+    radial-gradient(circle at 72% 46%, #9cc1e3 0 2px, transparent 2.8px),
+    radial-gradient(circle at 56% 72%, #6f9bc7 0 2px, transparent 2.8px),
+    radial-gradient(circle at 44% 78%, #a9c9e8 0 2px, transparent 2.8px),
+    linear-gradient(160deg, rgba(214,230,246,.62), rgba(170,201,231,.5));
+  border:1px solid rgba(156,193,227,.55);
+  box-shadow:0 10px 22px rgba(111,155,199,.26), inset 0 -10px 18px rgba(156,193,227,.22)}
+.bear-balloon::before{content:"";position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);
+  border-left:6px solid transparent;border-right:6px solid transparent;border-top:9px solid rgba(170,201,231,.75)}
+.bear-balloon::after{content:"";position:absolute;bottom:-52px;left:50%;width:2px;height:50px;
+  background:linear-gradient(rgba(120,150,180,.5),rgba(120,150,180,.12));transform:translateX(-50%)}
+
+/* Nubes del hero */
+.hero-cloud{position:absolute;z-index:1;background:#fff;border-radius:50px;opacity:.9;
+  box-shadow:0 8px 18px rgba(111,155,199,.12)}
+.hero-cloud::before,.hero-cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
+.hero-cloud.hc1{width:96px;height:30px;left:-48px;top:150px}
+.hero-cloud.hc1::before{width:42px;height:42px;top:-20px;left:14px}
+.hero-cloud.hc1::after{width:30px;height:30px;top:-12px;left:50px}
+.hero-cloud.hc2{width:84px;height:26px;right:-44px;top:120px;opacity:.82}
+.hero-cloud.hc2::before{width:38px;height:38px;top:-18px;left:12px}
+.hero-cloud.hc2::after{width:26px;height:26px;top:-10px;left:44px}
+.hero-cloud.hc3{width:72px;height:22px;left:26px;top:280px;opacity:.78}
+.hero-cloud.hc3::before{width:30px;height:30px;top:-14px;left:10px}
+.hero-cloud.hc3::after{width:22px;height:22px;top:-8px;left:36px}
 
 .title{font-size:clamp(2.6rem,11vw,4rem);color:var(--blue-deep);margin-top:14px;
   text-shadow:0 3px 0 rgba(255,255,255,.7)}
@@ -131,16 +165,6 @@ h2{font-size:clamp(1.5rem,5vw,2rem);text-align:center;color:var(--blue-deep);mar
 .pred-del{background:none;border:none;cursor:pointer;color:#c7a6a6;font-size:1.2rem;padding:4px;line-height:1}
 .pred-del:hover{color:#e08a8a}
 .board-actions{text-align:center;margin-top:22px}
-
-/* ---------- Galería ---------- */
-.gallery-sub{text-align:center;color:var(--ink-soft);margin-bottom:20px}
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-.gallery-grid figure{margin:0;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:3/4}
-.gallery-grid img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
-.gallery-grid img:hover{transform:scale(1.05)}
-.gallery-note{text-align:center;color:var(--ink-soft);font-size:.9rem;background:#fff;border:1px dashed var(--blue-soft);
-  border-radius:16px;padding:18px}
-.gallery-note code{background:var(--blue-mist);padding:2px 6px;border-radius:6px;font-size:.85rem}
 
 /* ---------- Footer ---------- */
 .footer{text-align:center;padding:46px 22px 60px;color:var(--ink-soft)}

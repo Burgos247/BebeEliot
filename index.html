@@ -35,81 +35,91 @@
     <p class="eyebrow">Baby Shower · Quiniela de Nacimiento</p>
 
     <div class="bear-stage">
-      <!-- Osito protagonista (SVG) -->
+      <!-- Nubes detrás del osito -->
+      <span class="hero-cloud hc1" aria-hidden="true"></span>
+      <span class="hero-cloud hc2" aria-hidden="true"></span>
+      <span class="hero-cloud hc3" aria-hidden="true"></span>
+
+      <!-- Globo de confeti azul (como el de la decoración) -->
       <div class="bear-balloon" aria-hidden="true"></div>
-      <svg class="bear" viewBox="0 0 240 250" role="img" aria-label="Osito de peluche con moño azul">
+
+      <!-- Osito protagonista (SVG) -->
+      <svg class="bear" viewBox="0 0 240 262" role="img" aria-label="Osito de peluche beige con moño azul">
         <defs>
-          <radialGradient id="furBody" cx="40%" cy="35%" r="75%">
-            <stop offset="0%" stop-color="#f6e6cf"/>
-            <stop offset="100%" stop-color="#e7cfa9"/>
+          <radialGradient id="furBody" cx="42%" cy="32%" r="80%">
+            <stop offset="0%" stop-color="#f4e3c6"/>
+            <stop offset="100%" stop-color="#e3c79c"/>
           </radialGradient>
-          <radialGradient id="furInner" cx="50%" cy="40%" r="70%">
-            <stop offset="0%" stop-color="#fbf3e6"/>
-            <stop offset="100%" stop-color="#f3e2c6"/>
+          <radialGradient id="furInner" cx="50%" cy="38%" r="72%">
+            <stop offset="0%" stop-color="#fbf4e4"/>
+            <stop offset="100%" stop-color="#f3e5c7"/>
           </radialGradient>
           <linearGradient id="bow" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#cfe2f3"/>
-            <stop offset="100%" stop-color="#a9c9e8"/>
+            <stop offset="0%" stop-color="#d4e6f6"/>
+            <stop offset="100%" stop-color="#a6c6e6"/>
           </linearGradient>
         </defs>
 
         <!-- piernas -->
-        <ellipse cx="78"  cy="205" rx="38" ry="32" fill="url(#furBody)"/>
-        <ellipse cx="162" cy="205" rx="38" ry="32" fill="url(#furBody)"/>
-        <ellipse cx="78"  cy="210" rx="20" ry="16" fill="url(#furInner)"/>
-        <ellipse cx="162" cy="210" rx="20" ry="16" fill="url(#furInner)"/>
-        <!-- huellitas -->
-        <ellipse cx="78"  cy="216" rx="7" ry="6" fill="#e3b98e"/>
-        <ellipse cx="162" cy="216" rx="7" ry="6" fill="#e3b98e"/>
-        <circle cx="70" cy="204" r="2.6" fill="#e3b98e"/><circle cx="78" cy="201" r="2.6" fill="#e3b98e"/><circle cx="86" cy="204" r="2.6" fill="#e3b98e"/>
-        <circle cx="154" cy="204" r="2.6" fill="#e3b98e"/><circle cx="162" cy="201" r="2.6" fill="#e3b98e"/><circle cx="170" cy="204" r="2.6" fill="#e3b98e"/>
-
-        <!-- brazos -->
-        <ellipse cx="48"  cy="150" rx="24" ry="34" fill="url(#furBody)" transform="rotate(-18 48 150)"/>
-        <ellipse cx="192" cy="150" rx="24" ry="34" fill="url(#furBody)" transform="rotate(18 192 150)"/>
+        <ellipse cx="74"  cy="228" rx="37" ry="29" fill="url(#furBody)"/>
+        <ellipse cx="166" cy="228" rx="37" ry="29" fill="url(#furBody)"/>
+        <!-- almohadillas de las patas -->
+        <ellipse cx="74"  cy="232" rx="20" ry="15" fill="#ecd9b6"/>
+        <ellipse cx="166" cy="232" rx="20" ry="15" fill="#ecd9b6"/>
+        <ellipse cx="74"  cy="236" rx="9"  ry="6"  fill="#e6bd92"/>
+        <ellipse cx="166" cy="236" rx="9"  ry="6"  fill="#e6bd92"/>
+        <circle cx="65" cy="226" r="3" fill="#e6bd92"/><circle cx="74" cy="223" r="3" fill="#e6bd92"/><circle cx="83" cy="226" r="3" fill="#e6bd92"/>
+        <circle cx="157" cy="226" r="3" fill="#e6bd92"/><circle cx="166" cy="223" r="3" fill="#e6bd92"/><circle cx="175" cy="226" r="3" fill="#e6bd92"/>
 
         <!-- cuerpo -->
-        <ellipse cx="120" cy="158" rx="62" ry="58" fill="url(#furBody)"/>
-        <ellipse cx="120" cy="166" rx="40" ry="40" fill="url(#furInner)"/>
+        <ellipse cx="120" cy="178" rx="64" ry="58" fill="url(#furBody)"/>
+        <ellipse cx="120" cy="188" rx="42" ry="42" fill="url(#furInner)"/>
+
+        <!-- brazos -->
+        <ellipse cx="58"  cy="172" rx="22" ry="31" fill="url(#furBody)" transform="rotate(-22 58 172)"/>
+        <ellipse cx="182" cy="172" rx="22" ry="31" fill="url(#furBody)" transform="rotate(22 182 172)"/>
+        <ellipse cx="60"  cy="184" rx="11" ry="13" fill="#ecd9b6" transform="rotate(-22 60 184)"/>
+        <ellipse cx="180" cy="184" rx="11" ry="13" fill="#ecd9b6" transform="rotate(22 180 184)"/>
 
         <!-- orejas -->
-        <circle cx="70"  cy="58" r="26" fill="url(#furBody)"/>
-        <circle cx="170" cy="58" r="26" fill="url(#furBody)"/>
-        <circle cx="70"  cy="60" r="13" fill="#e3b98e"/>
-        <circle cx="170" cy="60" r="13" fill="#e3b98e"/>
+        <circle cx="72"  cy="50" r="25" fill="url(#furBody)"/>
+        <circle cx="168" cy="50" r="25" fill="url(#furBody)"/>
+        <circle cx="72"  cy="53" r="13" fill="#e6bd92"/>
+        <circle cx="168" cy="53" r="13" fill="#e6bd92"/>
 
         <!-- cabeza -->
-        <circle cx="120" cy="86" r="62" fill="url(#furBody)"/>
+        <circle cx="120" cy="90" r="61" fill="url(#furBody)"/>
         <!-- hocico -->
-        <ellipse cx="120" cy="104" rx="34" ry="28" fill="url(#furInner)"/>
+        <ellipse cx="120" cy="110" rx="33" ry="27" fill="url(#furInner)"/>
 
-        <!-- mejillas -->
-        <circle cx="78"  cy="100" r="11" fill="#f3b8b0" opacity="0.55"/>
-        <circle cx="162" cy="100" r="11" fill="#f3b8b0" opacity="0.55"/>
+        <!-- mejillas sonrosadas -->
+        <circle cx="80"  cy="108" r="10.5" fill="#f2b1a8" opacity="0.5"/>
+        <circle cx="160" cy="108" r="10.5" fill="#f2b1a8" opacity="0.5"/>
+
+        <!-- cejitas -->
+        <path d="M90 76 q10 -7 20 -1" stroke="#caa06a" stroke-width="2.3" fill="none" stroke-linecap="round"/>
+        <path d="M130 75 q10 -6 20 1" stroke="#caa06a" stroke-width="2.3" fill="none" stroke-linecap="round"/>
 
         <!-- ojos -->
-        <circle cx="98"  cy="84" r="8" fill="#5b4636"/>
-        <circle cx="142" cy="84" r="8" fill="#5b4636"/>
-        <circle cx="100" cy="81" r="2.6" fill="#fff"/>
-        <circle cx="144" cy="81" r="2.6" fill="#fff"/>
-        <!-- cejitas -->
-        <path d="M88 70 q10 -7 20 -1" stroke="#c9a06a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-        <path d="M132 70 q10 -7 20 0" stroke="#c9a06a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <circle cx="100" cy="92" r="7.6" fill="#5b4636"/>
+        <circle cx="140" cy="92" r="7.6" fill="#5b4636"/>
+        <circle cx="102" cy="89" r="2.4" fill="#fff"/>
+        <circle cx="142" cy="89" r="2.4" fill="#fff"/>
 
         <!-- nariz y boca -->
-        <ellipse cx="120" cy="100" rx="9" ry="7" fill="#6b513c"/>
-        <path d="M120 107 v8" stroke="#6b513c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-        <path d="M120 115 q-9 9 -17 3" stroke="#6b513c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-        <path d="M120 115 q9 9 17 3"  stroke="#6b513c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <ellipse cx="120" cy="105" rx="8.5" ry="6.5" fill="#6b4f3a"/>
+        <path d="M120 111 v7" stroke="#6b4f3a" stroke-width="2.3" fill="none" stroke-linecap="round"/>
+        <path d="M120 118 q-9 8 -16 2" stroke="#6b4f3a" stroke-width="2.3" fill="none" stroke-linecap="round"/>
+        <path d="M120 118 q9 8 16 2"  stroke="#6b4f3a" stroke-width="2.3" fill="none" stroke-linecap="round"/>
 
-        <!-- moño azul -->
+        <!-- moño azul al cuello -->
         <g transform="translate(120 150)">
-          <path d="M0 0 C-30 -22 -52 -16 -52 4 C-52 24 -28 24 0 4 Z" fill="url(#bow)"/>
-          <path d="M0 0 C30 -22 52 -16 52 4 C52 24 28 24 0 4 Z" fill="url(#bow)"/>
-          <path d="M-52 4 C-44 6 -36 6 -28 2" stroke="#8fb4dc" stroke-width="2" fill="none"/>
-          <path d="M52 4 C44 6 36 6 28 2" stroke="#8fb4dc" stroke-width="2" fill="none"/>
-          <circle cx="0" cy="2" r="11" fill="#bcd6ef"/>
-          <circle cx="0" cy="2" r="11" fill="none" stroke="#8fb4dc" stroke-width="1.5"/>
+          <path d="M-4 0 C-30 -18 -53 -12 -51 7 C-50 23 -24 20 -4 6 Z" fill="url(#bow)"/>
+          <path d="M4 0 C30 -18 53 -12 51 7 C50 23 24 20 4 6 Z" fill="url(#bow)"/>
+          <path d="M-49 7 C-39 9 -27 8 -15 4" stroke="#9bbfe2" stroke-width="1.5" fill="none" opacity="0.7"/>
+          <path d="M49 7 C39 9 27 8 15 4" stroke="#9bbfe2" stroke-width="1.5" fill="none" opacity="0.7"/>
+          <rect x="-10" y="-7" width="20" height="18" rx="7" fill="#cfe2f3"/>
+          <rect x="-10" y="-7" width="20" height="18" rx="7" fill="none" stroke="#9bbfe2" stroke-width="1.4"/>
         </g>
       </svg>
     </div>
@@ -204,22 +214,6 @@
     <div class="board-actions" id="boardActions" hidden>
       <button class="btn btn-ghost" id="copyAll">Copiar quiniela 📋</button>
     </div>
-  </section>
-
-  <!-- ================= GALERÍA ================= -->
-  <section class="gallery">
-    <h2>Nuestra decoración 💙</h2>
-    <p class="gallery-sub">Inspiración osito · globos azules y blancos · nubes y lucecitas</p>
-    <div class="gallery-grid" id="galleryGrid">
-      <!-- Las fotos reales se cargan desde /images. Si no existen, se ocultan. -->
-      <figure><img src="images/photo1.jpg" alt="Mesa principal con arco de globos" loading="lazy" onerror="this.closest('figure').remove()"></figure>
-      <figure><img src="images/photo2.jpg" alt="Centro de mesa osito con globo de confeti" loading="lazy" onerror="this.closest('figure').remove()"></figure>
-      <figure><img src="images/photo3.jpg" alt="Arco de globos azul y blanco" loading="lazy" onerror="this.closest('figure').remove()"></figure>
-      <figure><img src="images/photo4.jpg" alt="Nube de globos con lucecitas" loading="lazy" onerror="this.closest('figure').remove()"></figure>
-      <figure><img src="images/photo5.jpg" alt="Ilustración del osito de Eliot" loading="lazy" onerror="this.closest('figure').remove()"></figure>
-      <figure><img src="images/photo6.jpg" alt="Decoración del baby shower" loading="lazy" onerror="this.closest('figure').remove()"></figure>
-    </div>
-    <p class="gallery-note" id="galleryNote" hidden>📸 Agrega tus fotos en la carpeta <code>/images</code> (photo1.jpg … photo6.jpg) para que aparezcan aquí.</p>
   </section>
 
   <footer class="footer">

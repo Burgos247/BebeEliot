@@ -207,22 +207,10 @@ function setupForm(){
   });
 }
 
-// --- Galería: mostrar nota si no hay fotos --------------------------------
-function checkGallery(){
-  setTimeout(() => {
-    const grid = $('#galleryGrid');
-    if (grid && grid.children.length === 0){
-      grid.hidden = true;
-      $('#galleryNote').hidden = false;
-    }
-  }, 1500);
-}
-
 // --- Init ------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
   updateCountdown();
   setupDateInput();
   setupForm();
   loadVotes();
-  checkGallery();
 });

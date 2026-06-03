@@ -5,5 +5,11 @@
     { "src": "index.html", "use": "@vercel/static" },
     { "src": "styles.css", "use": "@vercel/static" },
     { "src": "script.js", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/api/votes", "dest": "/api/votes.js" },
+    { "src": "/api/vote", "dest": "/api/vote.js" },
+    { "handle": "filesystem" },
+    { "src": "/", "dest": "/index.html" }
   ]
 }

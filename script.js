@@ -130,7 +130,7 @@ function reflectMyVote(){
     $('#message').value = myVote.message || '';
     btn.textContent = 'Actualizar mi predicción 🧸';
     note.hidden = false;
-    note.textContent = 'Ya registraste tu predicción desde esta conexión. Puedes editarla y volver a guardar.';
+    note.textContent = 'Ya registraste tu predicción desde este dispositivo. Puedes editarla y volver a guardar.';
   } else {
     btn.textContent = 'Guardar mi predicción 🧸';
     note.hidden = true;

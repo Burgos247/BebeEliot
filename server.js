@@ -40,7 +40,13 @@ function writeVotes(v){
   fs.writeFileSync(DATA_FILE, JSON.stringify(v, null, 2));
 }
 
-// --- Identificación por IP ------------------------------------------------
+// --- Identificación del votante (cookie de dispositivo + IP) --------------
+// La votación es sin login: cada navegador recibe un token aleatorio en una
+// cookie. Ese token es la clave del voto, así varias personas en la MISMA red
+// Wi-Fi (misma IP) pueden votar cada una. La IP se guarda hasheada solo como
+// dato de referencia, nunca en texto plano.
+const COOKIE = 'eliot_device';
+
 function getIP(req){
   const xff = req.headers['x-forwarded-for'];           // detrás de proxy/hosting
   let ip = xff ? String(xff).split(',')[0].trim()
@@ -49,9 +55,29 @@ function getIP(req){
   if (ip === '::1') ip = '127.0.0.1';
   return ip || 'unknown';
 }
-function ipKey(ip){
-  return crypto.createHash('sha256').update(IP_SALT + ':' + ip).digest('hex').slice(0, 16);
+function hash(str){
+  return crypto.createHash('sha256').update(IP_SALT + ':' + str).digest('hex').slice(0, 16);
 }
+function parseCookies(req){
+  const out = {};
+  (req.headers.cookie || '').split(';').forEach(p => {
+    const i = p.indexOf('=');
+    if (i > -1) out[p.slice(0, i).trim()] = decodeURIComponent(p.slice(i + 1).trim());
+  });
+  return out;
+}
+// Devuelve el token de dispositivo; si no existe, lo crea y prepara la cookie.
+function ensureDevice(req, res){
+  let token = parseCookies(req)[COOKIE];
+  if (!token || !/^[a-f0-9]{32}$/.test(token)){
+    token = crypto.randomBytes(16).toString('hex');
+    const secure = String(req.headers['x-forwarded-proto'] || '').includes('https') ? '; Secure' : '';
+    res.setHeader('Set-Cookie',
+      `${COOKIE}=${token}; Path=/; Max-Age=31536000; SameSite=Lax; HttpOnly${secure}`);
+  }
+  return token;
+}
+function voterKey(token){ return hash('dev:' + token); }
 
 // --- Validación / limpieza ------------------------------------------------
 function clean(str, max){
@@ -117,18 +143,19 @@ ensureData();
 
 const server = http.createServer(async (req, res) => {
   const url = req.url.split('?')[0];
+  const device = ensureDevice(req, res);                 // asigna cookie si hace falta
 
-  // GET /api/votes  → lista pública + tu voto actual (según tu IP)
+  // GET /api/votes  → lista pública + tu voto actual (según tu dispositivo)
   if (req.method === 'GET' && url === '/api/votes'){
     const store = readVotes();
-    const mine = store[ipKey(getIP(req))] || null;
+    const mine = store[voterKey(device)] || null;
     return sendJSON(res, 200, {
       votes: publicVotes(store),
       you: mine ? { name:mine.name, date:mine.date, time:mine.time, weight:mine.weight, message:mine.message } : null,
     });
   }
 
-  // POST /api/vote → registra o actualiza el voto de esta IP
+  // POST /api/vote → registra o actualiza el voto de este dispositivo
   if (req.method === 'POST' && url === '/api/vote'){
     try {
       const body = JSON.parse(await readBody(req) || '{}');
@@ -136,9 +163,9 @@ const server = http.createServer(async (req, res) => {
       if (errors.length) return sendJSON(res, 400, { ok:false, errors });
 
       const store = readVotes();
-      const key = ipKey(getIP(req));
+      const key = voterKey(device);
       const existed = Boolean(store[key]);
-      store[key] = { ...vote, updatedAt: new Date().toISOString() };
+      store[key] = { ...vote, ipHash: hash('ip:' + getIP(req)), updatedAt: new Date().toISOString() };
       writeVotes(store);
 
       return sendJSON(res, 200, {

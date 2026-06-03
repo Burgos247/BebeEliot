@@ -5,8 +5,8 @@
    =========================================================== */
 
 // --- Configuración base ---------------------------------------------------
-// Mamá estaba de 34 semanas el 2026-06-03 → Fecha Probable de Parto (40 sem)
-const EDD = new Date(2026, 6, 15);            // 15 de julio de 2026 (mes 6 = julio)
+// Mamá de 35 semanas el 2026-06-03 → Fecha Probable de Parto (40 sem)
+const EDD = new Date(2026, 6, 8);             // 8 de julio de 2026 (mes 6 = julio)
 
 const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 const MESES_LARGO = ['enero','febrero','marzo','abril','mayo','junio','julio',

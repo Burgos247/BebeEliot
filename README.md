@@ -77,8 +77,8 @@ como `node server.js` (o `npm start`); el puerto se toma de `PORT`.
 
 ## 📅 Datos del cálculo
 
-- Mamá estaba de **34 semanas** el **3 de junio de 2026**.
-- **Fecha probable de parto (40 semanas): 15 de julio de 2026.**
+- Mamá de **35 semanas** el **3 de junio de 2026**.
+- **Fecha probable de parto (40 semanas): 8 de julio de 2026.**
 - El selector permite elegir desde hoy hasta ~5 semanas después de la FPP.
 
 > Para ajustar la fecha, edita la constante `EDD` en `script.js` **y** en `server.js`

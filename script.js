@@ -35,6 +35,8 @@ function updateCountdown(){
   const currentWeeks = Math.max(0, Math.min(42, Math.floor(40 - weeksRemaining)));
 
   $('#currentWeeks').textContent = currentWeeks;
+  const weeksNow = $('#weeksNow');
+  if (weeksNow) weeksNow.textContent = currentWeeks;
   $('#edd').textContent = `${EDD.getDate()} ${MESES[EDD.getMonth()]}`;
   $('#eddLong').textContent = `${EDD.getDate()} de ${MESES_LARGO[EDD.getMonth()]} de ${EDD.getFullYear()}`;
 

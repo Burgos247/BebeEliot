@@ -5,8 +5,8 @@
    =========================================================== */
 
 // --- Configuración base ---------------------------------------------------
-// Mamá de 35 semanas el 2026-06-03 → Fecha Probable de Parto (40 sem)
-const EDD = new Date(2026, 6, 8);             // 8 de julio de 2026 (mes 6 = julio)
+// Mamá de 38 semanas el 2026-06-23 → Fecha Probable de Parto (40 sem)
+const EDD = new Date(2026, 6, 7);             // 7 de julio de 2026 (mes 6 = julio)
 
 // Interruptor de la quiniela. false = votaciones cerradas ("ya viene en camino").
 const VOTING_OPEN = false;

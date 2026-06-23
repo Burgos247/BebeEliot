@@ -11,6 +11,11 @@ const EDD = new Date(2026, 6, 7);             // 7 de julio de 2026 (mes 6 = jul
 // Interruptor de la quiniela. false = votaciones cerradas ("ya viene en camino").
 const VOTING_OPEN = false;
 
+// 🎉 Nacimiento. Pon BORN = null si aún no ha nacido.
+const BORN = new Date(2026, 5, 23);   // 23 de junio de 2026 (mes 5 = junio)
+const BORN_WEIGHT = '3.2';            // kg (vacío '' si no aplica)
+const BORN_TIME = '';                 // hora 'HH:MM' (vacío si no se sabe)
+
 const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 const MESES_LARGO = ['enero','febrero','marzo','abril','mayo','junio','julio',
                      'agosto','septiembre','octubre','noviembre','diciembre'];
@@ -32,6 +37,8 @@ function escapeHtml(str){
 
 // --- Cálculo de semanas y días --------------------------------------------
 function updateCountdown(){
+  if (BORN) return renderBorn();
+
   const today = startOfDay(new Date());
   const daysToEDD = daysBetween(EDD, today);
   const weeksRemaining = daysToEDD / 7;
@@ -47,6 +54,50 @@ function updateCountdown(){
   if (daysToEDD > 0)        daysLeftEl.textContent = daysToEDD;
   else if (daysToEDD === 0) daysLeftEl.textContent = '¡Hoy!';
   else                      daysLeftEl.textContent = '¡Ya viene!';
+}
+
+// --- Modo "ya nació" 🎉 -----------------------------------------------------
+function renderBorn(){
+  const dayLong = `${BORN.getDate()} de ${MESES_LARGO[BORN.getMonth()]} de ${BORN.getFullYear()}`;
+  const daysOld = Math.max(0, daysBetween(startOfDay(new Date()), BORN));
+  const oldLabel = daysOld === 1 ? 'día de nacido' : 'días de nacido';
+
+  // Tarjeta principal
+  const card = document.querySelector('.countdown-card');
+  if (card){
+    card.innerHTML = `
+      <p class="cd-label">🎉 ¡Eliot ya nació!</p>
+      <p class="cd-weeks">${BORN.getDate()} de ${MESES_LARGO[BORN.getMonth()]}</p>
+      <div class="cd-row">
+        <div>
+          <span class="cd-num">${BORN_WEIGHT ? `${BORN_WEIGHT} kg` : '—'}</span>
+          <span class="cd-cap">Peso al nacer</span>
+        </div>
+        <div>
+          <span class="cd-num">${daysOld}</span>
+          <span class="cd-cap">${oldLabel}</span>
+        </div>
+      </div>`;
+  }
+
+  // Subtítulo del hero
+  const heroSub = $('#heroSub');
+  if (heroSub) heroSub.textContent = '¡Bienvenido al mundo, Bebé Eliot! 🎉💙';
+
+  // Texto de la sección de predicciones
+  const playSub = $('#playSub');
+  if (playSub){
+    playSub.innerHTML = `Eliot nació el <strong>${dayLong}</strong>${BORN_TIME ? ` a las <strong>${BORN_TIME}</strong>` : ''}${BORN_WEIGHT ? `, pesando <strong>${BORN_WEIGHT} kg</strong>` : ''}. 💙 Estas fueron las predicciones, ordenadas de la más cercana a la fecha real:`;
+  }
+
+  // Aviso (antes "ya viene en camino")
+  const closed = $('#votingClosed');
+  if (closed){
+    closed.innerHTML = `
+      <span class="closed-emoji">🎉</span>
+      <h3>¡Eliot ya nació!</h3>
+      <p>Nació el <strong>${dayLong}</strong>${BORN_WEIGHT ? ` · <strong>${BORN_WEIGHT} kg</strong>` : ''}. ¡Gracias a todos por participar! 💙</p>`;
+  }
 }
 
 // --- Configurar el selector de fecha --------------------------------------
@@ -99,18 +150,31 @@ function renderPredictions(list){
   empty.hidden = list.length > 0;
   actions.hidden = list.length === 0;
 
-  list.forEach((p) => {
+  // Si ya nació, ordenar de la predicción más cercana a la más lejana
+  let arr = list.slice();
+  if (BORN){
+    arr.sort((a, b) =>
+      Math.abs(daysBetween(fromISO(a.date), BORN)) - Math.abs(daysBetween(fromISO(b.date), BORN)));
+  }
+
+  arr.forEach((p, i) => {
     const d = fromISO(p.date);
     const li = document.createElement('li');
     li.className = 'pred-item';
 
     const meta = [];
+    if (BORN){
+      const diff = Math.abs(daysBetween(d, BORN));
+      meta.push(diff === 0 ? '🎯 ¡acertó el día!' : `a ${diff} ${diff === 1 ? 'día' : 'días'}`);
+    }
     if (p.time)   meta.push(`🕐 ${p.time}`);
     if (p.weight) meta.push(`⚖️ ${p.weight} kg`);
 
     const isMine = myVote && myVote.name === p.name && myVote.date === p.date;
+    const rank = BORN ? `<span class="pred-rank">${i + 1}</span>` : '';
 
     li.innerHTML = `
+      ${rank}
       <div class="pred-date">
         <span class="d">${d.getDate()}</span>
         <span class="m">${MESES[d.getMonth()]}</span>

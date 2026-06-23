@@ -79,6 +79,9 @@ como `node server.js` (o `npm start`); el puerto se toma de `PORT`.
 
 - Mamá de **38 semanas** el **23 de junio de 2026**.
 - **Fecha probable de parto (40 semanas): 7 de julio de 2026.**
+- 🎉 **Eliot nació el 23 de junio de 2026 (3,2 kg).** En `script.js`, la constante
+  `BORN` activa el modo "ya nació": anuncia el nacimiento y ordena las predicciones
+  de la más cercana a la más lejana. (Pon `BORN = null` para volver al modo cuenta atrás.)
 - El selector permite elegir desde hoy hasta ~5 semanas después de la FPP.
 
 > Para ajustar la fecha, edita la constante `EDD` en `script.js` **y** en `server.js`

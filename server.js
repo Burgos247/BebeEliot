@@ -164,6 +164,9 @@ const server = http.createServer(async (req, res) => {
 
   // POST /api/vote → registra o actualiza el voto de este dispositivo
   if (req.method === 'POST' && url === '/api/vote'){
+    if (process.env.VOTING_OPEN !== '1'){
+      return sendJSON(res, 403, { ok:false, errors:['Las predicciones están cerradas. ¡Ya viene en camino! 🍼'] });
+    }
     try {
       const body = JSON.parse(await readBody(req) || '{}');
       const { errors, vote } = validVote(body);

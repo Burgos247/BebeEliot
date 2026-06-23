@@ -6,6 +6,8 @@ const crypto = require('crypto');
 const IP_SALT = process.env.IP_SALT || 'eliot-jose-baby-shower';
 const COOKIE  = 'eliot_device';
 const KEY     = 'eliot:votes';
+// Votaciones cerradas ("ya viene en camino"). Pon "1" en VOTING_OPEN para reabrir.
+const VOTING_OPEN = process.env.VOTING_OPEN === '1';
 const KV_URL   = process.env.KV_REST_API_URL   || process.env.UPSTASH_REDIS_REST_URL   || '';
 const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || '';
 
@@ -94,6 +96,7 @@ function publicVotes(store){
 module.exports = async (req, res) => {
   try {
     if (req.method !== 'POST') return send(res, 405, { ok:false, errors:['Método no permitido'] });
+    if (!VOTING_OPEN) return send(res, 403, { ok:false, errors:['Las predicciones están cerradas. ¡Ya viene en camino! 🍼'] });
     const device = ensureDevice(req, res);
     const body = await readJsonBody(req);
 

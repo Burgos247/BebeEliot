@@ -8,6 +8,9 @@
 // Mamá de 35 semanas el 2026-06-03 → Fecha Probable de Parto (40 sem)
 const EDD = new Date(2026, 6, 8);             // 8 de julio de 2026 (mes 6 = julio)
 
+// Interruptor de la quiniela. false = votaciones cerradas ("ya viene en camino").
+const VOTING_OPEN = false;
+
 const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 const MESES_LARGO = ['enero','febrero','marzo','abril','mayo','junio','julio',
                      'agosto','septiembre','octubre','noviembre','diciembre'];
@@ -160,7 +163,15 @@ function toast(msg){
 
 // --- Eventos ---------------------------------------------------------------
 function setupForm(){
-  $('#predictionForm').addEventListener('submit', async (e) => {
+  const form = $('#predictionForm');
+
+  if (!VOTING_OPEN){
+    // Votaciones cerradas: ocultar el formulario y mostrar el aviso
+    form.hidden = true;
+    const closed = $('#votingClosed');
+    if (closed) closed.hidden = false;
+  } else {
+    form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = $('#submitBtn');
     const payload = {
@@ -194,7 +205,8 @@ function setupForm(){
     } finally {
       btn.disabled = false;
     }
-  });
+    });
+  }
 
   // Copiar quiniela
   $('#copyAll').addEventListener('click', async () => {

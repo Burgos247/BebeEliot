@@ -13,6 +13,7 @@
 }
 
 *{box-sizing:border-box}
+[hidden]{display:none !important}
 html{scroll-behavior:smooth}
 body{
   margin:0;
@@ -124,6 +125,13 @@ h2{font-size:clamp(1.5rem,5vw,2rem);text-align:center;color:var(--blue-deep);mar
 
 /* ---------- Tablero de predicciones ---------- */
 .board-sub{text-align:center;color:var(--ink-soft)}
+
+/* ---------- Votaciones cerradas ---------- */
+.closed-banner{max-width:520px;margin:0 auto;padding:30px 24px;text-align:center;
+  background:linear-gradient(160deg,#fff 0%,var(--blue-mist) 100%);border:1px solid #e3edf7}
+.closed-emoji{font-size:3rem;display:block;animation:bobble 4s ease-in-out infinite}
+.closed-banner h3{font-family:'Baloo 2';font-size:1.7rem;color:var(--blue-deep);margin:6px 0 6px}
+.closed-banner p{margin:0;color:var(--ink-soft)}
 .count{display:inline-block;background:var(--blue-deep);color:#fff;font-family:'Baloo 2';
   font-size:1rem;min-width:30px;padding:2px 10px;border-radius:50px;margin-left:4px}
 .pred-list{list-style:none;padding:0;margin:18px auto 0;max-width:560px;display:flex;flex-direction:column;gap:12px}

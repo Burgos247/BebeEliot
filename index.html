@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quiniela de Nacimiento · Diego Andrés 🧸</title>
+  <title>Quiniela de Nacimiento · Diego Andrés 🐻</title>
   <meta name="description" content="¿Cuándo nacerá Diego Andrés? Participa en la quiniela y adivina el día. ¡Gana quien se acerque más!" />
 
   <!-- Open Graph para compartir el enlace -->
-  <meta property="og:title" content="¿Cuándo nacerá Diego Andrés? 🧸" />
+  <meta property="og:title" content="¿Cuándo nacerá Diego Andrés? 🐻" />
   <meta property="og:description" content="Participa en la quiniela del nacimiento. Adivina el día y gana quien más se acerque." />
   <meta property="og:type" content="website" />
 
@@ -15,16 +15,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧸</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐻</text></svg>" />
 </head>
 <body>
 
   <!-- Globos / nubes decorativas de fondo -->
   <div class="sky" aria-hidden="true">
-    <span class="balloon b1"></span>
-    <span class="balloon b2"></span>
-    <span class="balloon b3"></span>
-    <span class="balloon b4"></span>
+    <span class="floaty f1">🐝</span>
+    <span class="floaty f2">💛</span>
+    <span class="floaty f3">🍯</span>
+    <span class="floaty f4">🐝</span>
+    <span class="floaty f5">💛</span>
     <span class="cloud c1"></span>
     <span class="cloud c2"></span>
     <span class="cloud c3"></span>
@@ -41,93 +42,68 @@
       <span class="hero-cloud hc3" aria-hidden="true"></span>
 
       <!-- Osito protagonista (SVG) -->
-      <svg class="bear" viewBox="0 0 240 262" role="img" aria-label="Osito de peluche beige con moño azul">
+      <svg class="bear" viewBox="0 0 240 262" role="img" aria-label="Osito estilo Winnie the Pooh con camiseta roja">
         <defs>
-          <radialGradient id="furBody" cx="42%" cy="32%" r="80%">
-            <stop offset="0%" stop-color="#f4e3c6"/>
-            <stop offset="100%" stop-color="#e3c79c"/>
+          <radialGradient id="pooh" cx="42%" cy="34%" r="82%">
+            <stop offset="0%" stop-color="#fbd45f"/>
+            <stop offset="100%" stop-color="#eda528"/>
           </radialGradient>
-          <radialGradient id="furInner" cx="50%" cy="38%" r="72%">
-            <stop offset="0%" stop-color="#fbf4e4"/>
-            <stop offset="100%" stop-color="#f3e5c7"/>
-          </radialGradient>
-          <linearGradient id="bow" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#d4e6f6"/>
-            <stop offset="100%" stop-color="#a6c6e6"/>
+          <linearGradient id="shirt" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#e8564a"/>
+            <stop offset="100%" stop-color="#ce3a2f"/>
           </linearGradient>
         </defs>
 
-        <!-- piernas -->
-        <ellipse cx="74"  cy="228" rx="37" ry="29" fill="url(#furBody)"/>
-        <ellipse cx="166" cy="228" rx="37" ry="29" fill="url(#furBody)"/>
-        <!-- almohadillas de las patas -->
-        <ellipse cx="74"  cy="232" rx="20" ry="15" fill="#ecd9b6"/>
-        <ellipse cx="166" cy="232" rx="20" ry="15" fill="#ecd9b6"/>
-        <ellipse cx="74"  cy="236" rx="9"  ry="6"  fill="#e6bd92"/>
-        <ellipse cx="166" cy="236" rx="9"  ry="6"  fill="#e6bd92"/>
-        <circle cx="65" cy="226" r="3" fill="#e6bd92"/><circle cx="74" cy="223" r="3" fill="#e6bd92"/><circle cx="83" cy="226" r="3" fill="#e6bd92"/>
-        <circle cx="157" cy="226" r="3" fill="#e6bd92"/><circle cx="166" cy="223" r="3" fill="#e6bd92"/><circle cx="175" cy="226" r="3" fill="#e6bd92"/>
+        <!-- piernas / pies -->
+        <ellipse cx="90"  cy="236" rx="26" ry="21" fill="url(#pooh)"/>
+        <ellipse cx="150" cy="236" rx="26" ry="21" fill="url(#pooh)"/>
 
-        <!-- cuerpo -->
-        <ellipse cx="120" cy="178" rx="64" ry="58" fill="url(#furBody)"/>
-        <ellipse cx="120" cy="188" rx="42" ry="42" fill="url(#furInner)"/>
+        <!-- cuerpo (amarillo) -->
+        <ellipse cx="120" cy="196" rx="56" ry="50" fill="url(#pooh)"/>
 
-        <!-- brazos -->
-        <ellipse cx="58"  cy="172" rx="22" ry="31" fill="url(#furBody)" transform="rotate(-22 58 172)"/>
-        <ellipse cx="182" cy="172" rx="22" ry="31" fill="url(#furBody)" transform="rotate(22 182 172)"/>
-        <ellipse cx="60"  cy="184" rx="11" ry="13" fill="#ecd9b6" transform="rotate(-22 60 184)"/>
-        <ellipse cx="180" cy="184" rx="11" ry="13" fill="#ecd9b6" transform="rotate(22 180 184)"/>
+        <!-- camiseta roja -->
+        <path d="M66 166 Q120 148 174 166 Q178 190 172 206 Q120 222 68 206 Q62 190 66 166 Z" fill="url(#shirt)"/>
+        <path d="M69 201 Q120 216 171 201" stroke="#c0332a" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+        <!-- brazos con manga roja -->
+        <ellipse cx="56"  cy="188" rx="19" ry="26" fill="url(#pooh)" transform="rotate(-16 56 188)"/>
+        <ellipse cx="184" cy="188" rx="19" ry="26" fill="url(#pooh)" transform="rotate(16 184 188)"/>
+        <ellipse cx="60"  cy="174" rx="17" ry="14" fill="url(#shirt)" transform="rotate(-16 60 174)"/>
+        <ellipse cx="180" cy="174" rx="17" ry="14" fill="url(#shirt)" transform="rotate(16 180 174)"/>
 
         <!-- orejas -->
-        <circle cx="72"  cy="50" r="25" fill="url(#furBody)"/>
-        <circle cx="168" cy="50" r="25" fill="url(#furBody)"/>
-        <circle cx="72"  cy="53" r="13" fill="#e6bd92"/>
-        <circle cx="168" cy="53" r="13" fill="#e6bd92"/>
+        <circle cx="76"  cy="44" r="19" fill="url(#pooh)"/>
+        <circle cx="164" cy="44" r="19" fill="url(#pooh)"/>
 
         <!-- cabeza -->
-        <circle cx="120" cy="90" r="61" fill="url(#furBody)"/>
-        <!-- hocico -->
-        <ellipse cx="120" cy="110" rx="33" ry="27" fill="url(#furInner)"/>
+        <circle cx="120" cy="88" r="62" fill="url(#pooh)"/>
 
-        <!-- mejillas sonrosadas -->
-        <circle cx="80"  cy="108" r="10.5" fill="#f2b1a8" opacity="0.5"/>
-        <circle cx="160" cy="108" r="10.5" fill="#f2b1a8" opacity="0.5"/>
+        <!-- mejillas -->
+        <ellipse cx="80"  cy="105" rx="13" ry="9" fill="#f0954c" opacity="0.5"/>
+        <ellipse cx="160" cy="105" rx="13" ry="9" fill="#f0954c" opacity="0.5"/>
 
-        <!-- cejitas alegres -->
-        <path d="M90 74 q10 -7 20 -1" stroke="#caa06a" stroke-width="2.3" fill="none" stroke-linecap="round"/>
-        <path d="M130 73 q10 -6 20 1" stroke="#caa06a" stroke-width="2.3" fill="none" stroke-linecap="round"/>
+        <!-- cejitas -->
+        <path d="M92 68 q11 -6 20 0" stroke="#6b4a24" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+        <path d="M128 68 q11 -6 20 0" stroke="#6b4a24" stroke-width="2.6" fill="none" stroke-linecap="round"/>
 
-        <!-- ojos felices con brillo -->
-        <circle cx="100" cy="91" r="8" fill="#5b4636"/>
-        <circle cx="140" cy="91" r="8" fill="#5b4636"/>
-        <circle cx="102.5" cy="88" r="2.9" fill="#fff"/>
-        <circle cx="142.5" cy="88" r="2.9" fill="#fff"/>
-        <circle cx="98" cy="93.5" r="1.3" fill="#fff" opacity="0.85"/>
-        <circle cx="138" cy="93.5" r="1.3" fill="#fff" opacity="0.85"/>
+        <!-- ojos -->
+        <ellipse cx="104" cy="82" rx="5" ry="6.5" fill="#3a291b"/>
+        <ellipse cx="136" cy="82" rx="5" ry="6.5" fill="#3a291b"/>
+        <circle cx="105.8" cy="79.5" r="1.6" fill="#fff"/>
+        <circle cx="137.8" cy="79.5" r="1.6" fill="#fff"/>
 
         <!-- nariz -->
-        <ellipse cx="120" cy="104" rx="8.5" ry="6.5" fill="#6b4f3a"/>
-        <path d="M120 110 v5" stroke="#6b4f3a" stroke-width="2.3" fill="none" stroke-linecap="round"/>
+        <ellipse cx="120" cy="96" rx="10" ry="8" fill="#3a291b"/>
+        <path d="M120 104 v5" stroke="#3a291b" stroke-width="2.4" fill="none" stroke-linecap="round"/>
 
-        <!-- sonrisa abierta y feliz -->
-        <path d="M102 116 Q120 121 138 116 Q133 136 120 136 Q107 136 102 116 Z" fill="#7a4f3a"/>
-        <path d="M111 129 Q120 136 129 129 Q120 132 111 129 Z" fill="#f0a59c"/>
-        <path d="M102 116 Q120 121 138 116" stroke="#6b4f3a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-
-        <!-- moño azul al cuello -->
-        <g transform="translate(120 150)">
-          <path d="M-4 0 C-30 -18 -53 -12 -51 7 C-50 23 -24 20 -4 6 Z" fill="url(#bow)"/>
-          <path d="M4 0 C30 -18 53 -12 51 7 C50 23 24 20 4 6 Z" fill="url(#bow)"/>
-          <path d="M-49 7 C-39 9 -27 8 -15 4" stroke="#9bbfe2" stroke-width="1.5" fill="none" opacity="0.7"/>
-          <path d="M49 7 C39 9 27 8 15 4" stroke="#9bbfe2" stroke-width="1.5" fill="none" opacity="0.7"/>
-          <rect x="-10" y="-7" width="20" height="18" rx="7" fill="#cfe2f3"/>
-          <rect x="-10" y="-7" width="20" height="18" rx="7" fill="none" stroke="#9bbfe2" stroke-width="1.4"/>
-        </g>
+        <!-- sonrisa -->
+        <path d="M120 109 q-11 9 -19 2" stroke="#3a291b" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <path d="M120 109 q11 9 19 2"  stroke="#3a291b" stroke-width="2.4" fill="none" stroke-linecap="round"/>
       </svg>
     </div>
 
     <h1 class="title">Diego Andrés</h1>
-    <p class="subtitle" id="heroSub">¿Qué día llegará nuestro osito? 🧸💙</p>
+    <p class="subtitle" id="heroSub">¿Qué día llegará nuestro osito? 🐻🍯</p>
 
     <div class="countdown-card">
       <p class="cd-label">Mamá está de</p>
@@ -157,7 +133,7 @@
         <p>Adivina el día en que crees que nacerá Diego Andrés.</p>
       </div>
       <div class="step">
-        <span class="step-emoji">🧸</span>
+        <span class="step-emoji">🐻</span>
         <h3>Deja tu nombre</h3>
         <p>Registra tu predicción para que quede guardada en la quiniela.</p>
       </div>
@@ -178,7 +154,7 @@
     <div id="votingClosed" class="closed-banner card" hidden>
       <span class="closed-emoji">🍼</span>
       <h3>¡Ya viene en camino!</h3>
-      <p>Las predicciones están cerradas. ¡Gracias a todos por participar! 💙</p>
+      <p>Las predicciones están cerradas. ¡Gracias a todos por participar! 💛</p>
     </div>
 
     <form id="predictionForm" class="card form" autocomplete="off">
@@ -206,10 +182,10 @@
 
       <label>
         <span>Mensaje para Diego Andrés (opcional)</span>
-        <textarea id="message" name="message" rows="2" maxlength="160" placeholder="¡Te esperamos con mucho amor! 💙"></textarea>
+        <textarea id="message" name="message" rows="2" maxlength="160" placeholder="¡Te esperamos con mucho amor! 💛"></textarea>
       </label>
 
-      <button type="submit" class="btn btn-primary" id="submitBtn">Guardar mi predicción 🧸</button>
+      <button type="submit" class="btn btn-primary" id="submitBtn">Guardar mi predicción 🐻</button>
       <p class="form-note" id="myVoteNote" hidden></p>
       <p class="form-note">Una predicción por dispositivo y cada nombre solo puede votar una vez. Si vuelves a votar desde aquí, se actualiza la tuya.</p>
     </form>
@@ -226,9 +202,9 @@
   </section>
 
   <footer class="footer">
-    <div class="bear-mini" aria-hidden="true">🧸</div>
+    <div class="bear-mini" aria-hidden="true">🐻</div>
     <p>Con mucho amor para <strong>Diego Andrés</strong></p>
-    <p class="footer-small">Quiniela de nacimiento · Baby Shower 💙</p>
+    <p class="footer-small">Quiniela de nacimiento · Baby Shower 💛</p>
   </footer>
 
   <script src="script.js"></script>

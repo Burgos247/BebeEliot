@@ -1,14 +1,16 @@
 :root{
-  --blue-deep:#6f9bc7;
-  --blue:#9cc1e3;
-  --blue-soft:#cfe2f3;
-  --blue-mist:#eaf3fb;
+  /* Paleta miel (Winnie the Pooh). Nombres antiguos conservados = valores nuevos. */
+  --blue-deep:#c9801e;   /* ámbar/miel oscura — títulos y acentos */
+  --blue:#f4b63a;        /* dorado miel — botones */
+  --blue-soft:#f6dc98;   /* miel suave — bordes y chips */
+  --blue-mist:#fdf4da;   /* miel muy clara — fondos de input/chip */
   --beige:#e7cfa9;
   --beige-soft:#f6ead4;
-  --ink:#4a5a6a;
-  --ink-soft:#7c8b9a;
+  --ink:#5b4526;         /* marrón cálido — texto */
+  --ink-soft:#a58a63;    /* marrón suave */
   --white:#ffffff;
-  --shadow:0 14px 40px rgba(111,155,199,.20);
+  --red:#df4a3d;         /* rojo camiseta de Pooh (acento) */
+  --shadow:0 14px 40px rgba(196,142,52,.20);
   --radius:22px;
 }
 
@@ -19,7 +21,7 @@ body{
   margin:0;
   font-family:'Quicksand',system-ui,sans-serif;
   color:var(--ink);
-  background:linear-gradient(180deg,#eaf3fb 0%,#f4f9fd 40%,#fbf7ef 100%);
+  background:linear-gradient(180deg,#fdf4dc 0%,#fef8e8 45%,#fffaf0 100%);
   overflow-x:hidden;
   line-height:1.55;
 }
@@ -27,24 +29,24 @@ h1,h2,h3{font-family:'Baloo 2',cursive;margin:0;line-height:1.15}
 a{color:inherit}
 img{max-width:100%;display:block}
 
-/* ---------- Cielo decorativo ---------- */
+/* ---------- Decoración: abejas, miel y corazones ---------- */
 .sky{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.balloon{position:absolute;width:54px;height:64px;border-radius:50%;opacity:.5;
-  animation:float 9s ease-in-out infinite}
-.balloon::after{content:"";position:absolute;bottom:-9px;left:50%;width:2px;height:22px;background:rgba(120,150,180,.4);transform:translateX(-50%)}
-.balloon.b1{top:12%;left:6%;background:var(--blue)}
-.balloon.b2{top:24%;right:8%;background:var(--white);animation-delay:1.4s}
-.balloon.b3{top:60%;left:4%;background:var(--blue-soft);animation-delay:.8s}
-.balloon.b4{top:70%;right:6%;background:var(--blue-deep);opacity:.35;animation-delay:2.1s}
-.cloud{position:absolute;background:#fff;border-radius:50px;opacity:.7;filter:blur(.3px)}
+.floaty{position:absolute;line-height:1;opacity:.9;
+  animation:float 9s ease-in-out infinite;filter:drop-shadow(0 4px 6px rgba(196,142,52,.18))}
+.floaty.f1{top:12%;left:6%;font-size:2rem}
+.floaty.f2{top:25%;right:8%;font-size:1.6rem;animation-delay:1.4s}
+.floaty.f3{top:58%;left:5%;font-size:2rem;animation-delay:.8s}
+.floaty.f4{top:70%;right:7%;font-size:1.7rem;animation-delay:2.1s}
+.floaty.f5{top:44%;left:47%;font-size:1.2rem;opacity:.6;animation-delay:1.1s}
+.cloud{position:absolute;background:#fff;border-radius:50px;opacity:.6;filter:blur(.3px)}
 .cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
 .cloud.c1{width:120px;height:34px;top:16%;left:18%}
 .cloud.c1::before{width:50px;height:50px;top:-22px;left:18px}
 .cloud.c1::after{width:38px;height:38px;top:-14px;left:60px}
-.cloud.c2{width:90px;height:26px;top:46%;right:14%;opacity:.6}
+.cloud.c2{width:90px;height:26px;top:47%;right:14%;opacity:.5}
 .cloud.c2::before{width:38px;height:38px;top:-16px;left:14px}
 .cloud.c2::after{width:30px;height:30px;top:-10px;left:46px}
-.cloud.c3{width:80px;height:24px;bottom:10%;left:40%;opacity:.5}
+.cloud.c3{width:80px;height:24px;bottom:10%;left:40%;opacity:.45}
 .cloud.c3::before{width:34px;height:34px;top:-15px;left:12px}
 .cloud.c3::after{width:26px;height:26px;top:-9px;left:40px}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
@@ -57,16 +59,16 @@ h2{font-size:clamp(1.5rem,5vw,2rem);text-align:center;color:var(--blue-deep);mar
 .hero{text-align:center;padding-top:26px}
 .eyebrow{position:relative;z-index:6;display:inline-block;letter-spacing:.14em;text-transform:uppercase;
   font-size:.74rem;font-weight:700;color:var(--blue-deep);margin:0 auto;
-  background:rgba(255,255,255,.6);padding:6px 16px;border-radius:50px;box-shadow:0 4px 14px rgba(111,155,199,.12)}
+  background:rgba(255,255,255,.6);padding:6px 16px;border-radius:50px;box-shadow:0 4px 14px rgba(196,142,52,.12)}
 .bear-stage{position:relative;width:240px;height:268px;margin:8px auto 0;z-index:2;
   animation:bobble 5s ease-in-out infinite}
 @keyframes bobble{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-9px) rotate(1deg)}}
 .bear{position:relative;z-index:3;width:230px;height:auto;margin-top:8px;
-  filter:drop-shadow(0 16px 20px rgba(111,155,199,.28))}
+  filter:drop-shadow(0 16px 20px rgba(196,142,52,.28))}
 
 /* Nubes del hero */
 .hero-cloud{position:absolute;z-index:1;background:#fff;border-radius:50px;opacity:.9;
-  box-shadow:0 8px 18px rgba(111,155,199,.12)}
+  box-shadow:0 8px 18px rgba(196,142,52,.12)}
 .hero-cloud::before,.hero-cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
 .hero-cloud.hc1{width:96px;height:30px;left:-48px;top:96px}
 .hero-cloud.hc1::before{width:42px;height:42px;top:-20px;left:14px}
@@ -97,8 +99,8 @@ h2{font-size:clamp(1.5rem,5vw,2rem);text-align:center;color:var(--blue-deep);mar
   font-size:1.05rem;padding:14px 28px;border-radius:50px;transition:transform .15s ease,box-shadow .15s ease;text-decoration:none}
 .btn:active{transform:scale(.97)}
 .btn-primary{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-deep) 100%);color:#fff;
-  box-shadow:0 10px 22px rgba(111,155,199,.4)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(111,155,199,.5)}
+  box-shadow:0 10px 22px rgba(196,142,52,.4)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(196,142,52,.5)}
 .btn-hero{margin-top:4px}
 .btn-ghost{background:#fff;color:var(--blue-deep);border:2px solid var(--blue-soft)}
 .btn-ghost:hover{background:var(--blue-mist)}

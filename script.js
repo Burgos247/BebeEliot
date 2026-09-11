@@ -1,5 +1,5 @@
 /* ===========================================================
-   Quiniela de Nacimiento · Diego Andrés 🧸
+   Quiniela de Nacimiento · Diego Andrés 🐻
    Front-end: cálculo de fechas + votación contra la API (/api)
    Una predicción por IP (sin login). Re-votar actualiza la tuya.
    =========================================================== */
@@ -82,12 +82,12 @@ function renderBorn(){
 
   // Subtítulo del hero
   const heroSub = $('#heroSub');
-  if (heroSub) heroSub.textContent = '¡Bienvenido al mundo, Diego Andrés! 🎉💙';
+  if (heroSub) heroSub.textContent = '¡Bienvenido al mundo, Diego Andrés! 🎉💛';
 
   // Texto de la sección de predicciones
   const playSub = $('#playSub');
   if (playSub){
-    playSub.innerHTML = `Diego Andrés nació el <strong>${dayLong}</strong>${BORN_TIME ? ` a las <strong>${BORN_TIME}</strong>` : ''}${BORN_WEIGHT ? `, pesando <strong>${BORN_WEIGHT} kg</strong>` : ''}. 💙 Estas fueron las predicciones, ordenadas de la más cercana a la fecha real:`;
+    playSub.innerHTML = `Diego Andrés nació el <strong>${dayLong}</strong>${BORN_TIME ? ` a las <strong>${BORN_TIME}</strong>` : ''}${BORN_WEIGHT ? `, pesando <strong>${BORN_WEIGHT} kg</strong>` : ''}. 💛 Estas fueron las predicciones, ordenadas de la más cercana a la fecha real:`;
   }
 
   // Aviso (antes "ya viene en camino")
@@ -96,7 +96,7 @@ function renderBorn(){
     closed.innerHTML = `
       <span class="closed-emoji">🎉</span>
       <h3>¡Diego Andrés ya nació!</h3>
-      <p>Nació el <strong>${dayLong}</strong>${BORN_WEIGHT ? ` · <strong>${BORN_WEIGHT} kg</strong>` : ''}. ¡Gracias a todos por participar! 💙</p>`;
+      <p>Nació el <strong>${dayLong}</strong>${BORN_WEIGHT ? ` · <strong>${BORN_WEIGHT} kg</strong>` : ''}. ¡Gracias a todos por participar! 💛</p>`;
   }
 }
 
@@ -199,11 +199,11 @@ function reflectMyVote(){
     $('#time').value    = myVote.time || '';
     $('#weight').value  = myVote.weight || '';
     $('#message').value = myVote.message || '';
-    btn.textContent = 'Actualizar mi predicción 🧸';
+    btn.textContent = 'Actualizar mi predicción 🐻';
     note.hidden = false;
     note.textContent = 'Ya registraste tu predicción desde este dispositivo. Puedes editarla y volver a guardar.';
   } else {
-    btn.textContent = 'Guardar mi predicción 🧸';
+    btn.textContent = 'Guardar mi predicción 🐻';
     note.hidden = true;
   }
 }
@@ -275,7 +275,7 @@ function setupForm(){
   // Copiar quiniela
   $('#copyAll').addEventListener('click', async () => {
     const items = [...document.querySelectorAll('#predictionList .pred-item')];
-    const lines = ['🧸 Quiniela de nacimiento · Diego Andrés',
+    const lines = ['🐻 Quiniela de nacimiento · Diego Andrés',
                    `Fecha probable de parto: ${$('#eddLong').textContent}`, ''];
     items.forEach(li => {
       const name = li.querySelector('.pred-name').textContent.replace('tú','').trim();

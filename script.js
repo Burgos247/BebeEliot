@@ -1,19 +1,19 @@
 /* ===========================================================
-   Quiniela de Nacimiento · Eliot José 🧸
+   Quiniela de Nacimiento · Diego Andrés 🧸
    Front-end: cálculo de fechas + votación contra la API (/api)
    Una predicción por IP (sin login). Re-votar actualiza la tuya.
    =========================================================== */
 
 // --- Configuración base ---------------------------------------------------
-// Mamá de 38 semanas el 2026-06-23 → Fecha Probable de Parto (40 sem)
-const EDD = new Date(2026, 6, 7);             // 7 de julio de 2026 (mes 6 = julio)
+// Mamá de 32 semanas + 6 días el 2026-09-11 → Fecha Probable de Parto (40 sem)
+const EDD = new Date(2026, 9, 31);            // 31 de octubre de 2026 (mes 9 = octubre)
 
 // Interruptor de la quiniela. false = votaciones cerradas ("ya viene en camino").
-const VOTING_OPEN = false;
+const VOTING_OPEN = true;
 
 // 🎉 Nacimiento. Pon BORN = null si aún no ha nacido.
-const BORN = new Date(2026, 5, 23);   // 23 de junio de 2026 (mes 5 = junio)
-const BORN_WEIGHT = '3.2';            // kg (vacío '' si no aplica)
+const BORN = null;                    // fecha de nacimiento (new Date(...)) cuando nazca
+const BORN_WEIGHT = '';               // kg (vacío '' si no aplica)
 const BORN_TIME = '';                 // hora 'HH:MM' (vacío si no se sabe)
 
 const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
@@ -66,7 +66,7 @@ function renderBorn(){
   const card = document.querySelector('.countdown-card');
   if (card){
     card.innerHTML = `
-      <p class="cd-label">🎉 ¡Eliot ya nació!</p>
+      <p class="cd-label">🎉 ¡Diego Andrés ya nació!</p>
       <p class="cd-weeks">${BORN.getDate()} de ${MESES_LARGO[BORN.getMonth()]}</p>
       <div class="cd-row">
         <div>
@@ -82,12 +82,12 @@ function renderBorn(){
 
   // Subtítulo del hero
   const heroSub = $('#heroSub');
-  if (heroSub) heroSub.textContent = '¡Bienvenido al mundo, Bebé Eliot! 🎉💙';
+  if (heroSub) heroSub.textContent = '¡Bienvenido al mundo, Diego Andrés! 🎉💙';
 
   // Texto de la sección de predicciones
   const playSub = $('#playSub');
   if (playSub){
-    playSub.innerHTML = `Eliot nació el <strong>${dayLong}</strong>${BORN_TIME ? ` a las <strong>${BORN_TIME}</strong>` : ''}${BORN_WEIGHT ? `, pesando <strong>${BORN_WEIGHT} kg</strong>` : ''}. 💙 Estas fueron las predicciones, ordenadas de la más cercana a la fecha real:`;
+    playSub.innerHTML = `Diego Andrés nació el <strong>${dayLong}</strong>${BORN_TIME ? ` a las <strong>${BORN_TIME}</strong>` : ''}${BORN_WEIGHT ? `, pesando <strong>${BORN_WEIGHT} kg</strong>` : ''}. 💙 Estas fueron las predicciones, ordenadas de la más cercana a la fecha real:`;
   }
 
   // Aviso (antes "ya viene en camino")
@@ -95,7 +95,7 @@ function renderBorn(){
   if (closed){
     closed.innerHTML = `
       <span class="closed-emoji">🎉</span>
-      <h3>¡Eliot ya nació!</h3>
+      <h3>¡Diego Andrés ya nació!</h3>
       <p>Nació el <strong>${dayLong}</strong>${BORN_WEIGHT ? ` · <strong>${BORN_WEIGHT} kg</strong>` : ''}. ¡Gracias a todos por participar! 💙</p>`;
   }
 }
@@ -275,7 +275,7 @@ function setupForm(){
   // Copiar quiniela
   $('#copyAll').addEventListener('click', async () => {
     const items = [...document.querySelectorAll('#predictionList .pred-item')];
-    const lines = ['🧸 Quiniela de nacimiento · Bebé Eliot',
+    const lines = ['🧸 Quiniela de nacimiento · Diego Andrés',
                    `Fecha probable de parto: ${$('#eddLong').textContent}`, ''];
     items.forEach(li => {
       const name = li.querySelector('.pred-name').textContent.replace('tú','').trim();

@@ -1,6 +1,6 @@
-# 🧸 Quiniela de Nacimiento · Eliot José
+# 🧸 Quiniela de Nacimiento · Diego Andrés
 
-Landing page para que amigos y familia adivinen **qué día nacerá Eliot José**.
+Landing page para que amigos y familia adivinen **qué día nacerá Diego Andrés**.
 Gana quien se acerque más a la fecha real. 💙
 
 La votación es **por IP, sin login**: cada persona escribe su nombre y su
@@ -77,11 +77,11 @@ como `node server.js` (o `npm start`); el puerto se toma de `PORT`.
 
 ## 📅 Datos del cálculo
 
-- Mamá de **38 semanas** el **23 de junio de 2026**.
-- **Fecha probable de parto (40 semanas): 7 de julio de 2026.**
-- 🎉 **Eliot nació el 23 de junio de 2026 (3,2 kg).** En `script.js`, la constante
-  `BORN` activa el modo "ya nació": anuncia el nacimiento y ordena las predicciones
-  de la más cercana a la más lejana. (Pon `BORN = null` para volver al modo cuenta atrás.)
+- Mamá de **32 semanas + 6 días** el **11 de septiembre de 2026**.
+- **Fecha probable de parto (40 semanas): 31 de octubre de 2026.**
+- **Votaciones abiertas.** Interruptores en `script.js`: `VOTING_OPEN` (true/false) y
+  `BORN` (fecha de nacimiento cuando nazca, o `null`). En el servidor, cerrar con la
+  variable de entorno `VOTING_OPEN=0`.
 - El selector permite elegir desde hoy hasta ~5 semanas después de la FPP.
 
 > Para ajustar la fecha, edita la constante `EDD` en `script.js` **y** en `server.js`

@@ -33,7 +33,7 @@
 
   <!-- ================= HERO ================= -->
   <header class="hero">
-    <p class="eyebrow">Baby Shower · Quiniela de Nacimiento</p>
+    <p class="eyebrow">Quiniela de Nacimiento</p>
 
     <div class="bear-stage">
       <!-- Nubes detrás del osito -->
@@ -42,63 +42,66 @@
       <span class="hero-cloud hc3" aria-hidden="true"></span>
 
       <!-- Osito protagonista (SVG) -->
-      <svg class="bear" viewBox="0 0 240 262" role="img" aria-label="Osito estilo Winnie the Pooh con camiseta roja">
+      <svg class="bear" viewBox="0 0 260 252" role="img" aria-label="Osito estilo Pooh sobre un cartel de Mi Baby Shower">
         <defs>
-          <radialGradient id="pooh" cx="42%" cy="34%" r="82%">
-            <stop offset="0%" stop-color="#fbd45f"/>
-            <stop offset="100%" stop-color="#eda528"/>
+          <radialGradient id="pooh" cx="42%" cy="32%" r="82%">
+            <stop offset="0%" stop-color="#fbd45f"/><stop offset="100%" stop-color="#eda528"/>
           </radialGradient>
           <linearGradient id="shirt" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#e8564a"/>
-            <stop offset="100%" stop-color="#ce3a2f"/>
+            <stop offset="0%" stop-color="#e8564a"/><stop offset="100%" stop-color="#ce3a2f"/>
+          </linearGradient>
+          <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#b9834b"/><stop offset="100%" stop-color="#8a5a2e"/>
+          </linearGradient>
+          <linearGradient id="baby" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffd45c"/><stop offset="100%" stop-color="#f0a52b"/>
           </linearGradient>
         </defs>
 
-        <!-- piernas / pies -->
-        <ellipse cx="90"  cy="236" rx="26" ry="21" fill="url(#pooh)"/>
-        <ellipse cx="150" cy="236" rx="26" ry="21" fill="url(#pooh)"/>
-
-        <!-- cuerpo (amarillo) -->
-        <ellipse cx="120" cy="196" rx="56" ry="50" fill="url(#pooh)"/>
-
-        <!-- camiseta roja -->
-        <path d="M66 166 Q120 148 174 166 Q178 190 172 206 Q120 222 68 206 Q62 190 66 166 Z" fill="url(#shirt)"/>
-        <path d="M69 201 Q120 216 171 201" stroke="#c0332a" stroke-width="3" fill="none" stroke-linecap="round"/>
-
-        <!-- brazos con manga roja -->
-        <ellipse cx="56"  cy="188" rx="19" ry="26" fill="url(#pooh)" transform="rotate(-16 56 188)"/>
-        <ellipse cx="184" cy="188" rx="19" ry="26" fill="url(#pooh)" transform="rotate(16 184 188)"/>
-        <ellipse cx="60"  cy="174" rx="17" ry="14" fill="url(#shirt)" transform="rotate(-16 60 174)"/>
-        <ellipse cx="180" cy="174" rx="17" ry="14" fill="url(#shirt)" transform="rotate(16 180 174)"/>
-
         <!-- orejas -->
-        <circle cx="76"  cy="44" r="19" fill="url(#pooh)"/>
-        <circle cx="164" cy="44" r="19" fill="url(#pooh)"/>
-
+        <circle cx="92" cy="40" r="16" fill="url(#pooh)"/>
+        <circle cx="168" cy="40" r="16" fill="url(#pooh)"/>
         <!-- cabeza -->
-        <circle cx="120" cy="88" r="62" fill="url(#pooh)"/>
-
+        <circle cx="130" cy="78" r="56" fill="url(#pooh)"/>
         <!-- mejillas -->
-        <ellipse cx="80"  cy="105" rx="13" ry="9" fill="#f0954c" opacity="0.5"/>
-        <ellipse cx="160" cy="105" rx="13" ry="9" fill="#f0954c" opacity="0.5"/>
-
-        <!-- cejitas -->
-        <path d="M92 68 q11 -6 20 0" stroke="#6b4a24" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-        <path d="M128 68 q11 -6 20 0" stroke="#6b4a24" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-
+        <ellipse cx="92" cy="94" rx="12" ry="8" fill="#f0954c" opacity="0.5"/>
+        <ellipse cx="168" cy="94" rx="12" ry="8" fill="#f0954c" opacity="0.5"/>
+        <!-- cejitas suaves -->
+        <path d="M104 60 q11 -5 20 -0.5" stroke="#6b4a24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <path d="M136 59.5 q11 -5 20 0.5" stroke="#6b4a24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
         <!-- ojos -->
-        <ellipse cx="104" cy="82" rx="5" ry="6.5" fill="#3a291b"/>
-        <ellipse cx="136" cy="82" rx="5" ry="6.5" fill="#3a291b"/>
-        <circle cx="105.8" cy="79.5" r="1.6" fill="#fff"/>
-        <circle cx="137.8" cy="79.5" r="1.6" fill="#fff"/>
+        <ellipse cx="114" cy="74" rx="4.6" ry="6" fill="#3a291b"/>
+        <ellipse cx="146" cy="74" rx="4.6" ry="6" fill="#3a291b"/>
+        <circle cx="115.6" cy="71.8" r="1.5" fill="#fff"/>
+        <circle cx="147.6" cy="71.8" r="1.5" fill="#fff"/>
+        <!-- nariz + boca -->
+        <ellipse cx="130" cy="88" rx="9" ry="7" fill="#3a291b"/>
+        <path d="M130 95 v4" stroke="#3a291b" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <path d="M130 99 q-10 8 -17 2" stroke="#3a291b" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <path d="M130 99 q10 8 17 2"  stroke="#3a291b" stroke-width="2.2" fill="none" stroke-linecap="round"/>
 
-        <!-- nariz -->
-        <ellipse cx="120" cy="96" rx="10" ry="8" fill="#3a291b"/>
-        <path d="M120 104 v5" stroke="#3a291b" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <!-- camiseta roja (asoma bajo la barbilla) -->
+        <path d="M100 132 Q130 120 160 132 L158 150 Q130 158 102 150 Z" fill="url(#shirt)"/>
 
-        <!-- sonrisa -->
-        <path d="M120 109 q-11 9 -19 2" stroke="#3a291b" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-        <path d="M120 109 q11 9 19 2"  stroke="#3a291b" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <!-- cartel de madera -->
+        <rect x="26" y="146" width="208" height="86" rx="14" fill="url(#wood)"/>
+        <rect x="26" y="146" width="208" height="86" rx="14" fill="none" stroke="#6f4622" stroke-width="3"/>
+        <path d="M40 166 H220" stroke="#7c5028" stroke-width="1.5" opacity=".45"/>
+        <path d="M40 210 H220" stroke="#7c5028" stroke-width="1.5" opacity=".45"/>
+        <g fill="#ffd75e">
+          <path d="M48 178 l1.3 3.4 l3.4 1.3 l-3.4 1.3 l-1.3 3.4 l-1.3 -3.4 l-3.4 -1.3 l3.4 -1.3 Z"/>
+          <path d="M214 173 l1.3 3.4 l3.4 1.3 l-3.4 1.3 l-1.3 3.4 l-1.3 -3.4 l-3.4 -1.3 l3.4 -1.3 Z"/>
+          <path d="M212 214 l1.1 2.9 l2.9 1.1 l-2.9 1.1 l-1.1 2.9 l-1.1 -2.9 l-2.9 -1.1 l2.9 -1.1 Z"/>
+          <path d="M48 214 l1.1 2.9 l2.9 1.1 l-2.9 1.1 l-1.1 2.9 l-1.1 -2.9 l-2.9 -1.1 l2.9 -1.1 Z"/>
+        </g>
+        <!-- texto del cartel -->
+        <text x="97" y="177" font-family="Baloo 2, cursive" font-style="italic" font-weight="600" font-size="19" fill="#7fb6e0">Mi</text>
+        <text x="130" y="201" text-anchor="middle" font-family="Baloo 2, cursive" font-weight="800" font-size="30" fill="url(#baby)" stroke="#fff6df" stroke-width="0.9" paint-order="stroke" letter-spacing="1">BABY</text>
+        <text x="130" y="224" text-anchor="middle" font-family="Baloo 2, cursive" font-weight="700" font-size="18" fill="#fbf1dc" letter-spacing="2">SHOWER</text>
+
+        <!-- patitas sobre el cartel -->
+        <ellipse cx="84" cy="148" rx="19" ry="12" fill="url(#pooh)"/>
+        <ellipse cx="176" cy="148" rx="19" ry="12" fill="url(#pooh)"/>
       </svg>
     </div>
 

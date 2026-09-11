@@ -60,11 +60,12 @@ h2{font-size:clamp(1.5rem,5vw,2rem);text-align:center;color:var(--blue-deep);mar
 .eyebrow{position:relative;z-index:6;display:inline-block;letter-spacing:.14em;text-transform:uppercase;
   font-size:.74rem;font-weight:700;color:var(--blue-deep);margin:0 auto;
   background:rgba(255,255,255,.6);padding:6px 16px;border-radius:50px;box-shadow:0 4px 14px rgba(196,142,52,.12)}
-.bear-stage{position:relative;width:240px;height:268px;margin:8px auto 0;z-index:2;
+.bear-stage{position:relative;margin:4px auto 0;z-index:2;
   animation:bobble 5s ease-in-out infinite}
 @keyframes bobble{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-9px) rotate(1deg)}}
-.bear{position:relative;z-index:3;width:230px;height:auto;margin-top:8px;
-  filter:drop-shadow(0 16px 20px rgba(196,142,52,.28))}
+.bear{position:relative;z-index:3;display:block;width:auto;height:330px;max-width:88%;margin:0 auto;
+  filter:drop-shadow(0 12px 14px rgba(196,142,52,.30))}
+@media (max-width:480px){ .bear{height:290px} }
 
 /* Nubes del hero */
 .hero-cloud{position:absolute;z-index:1;background:#fff;border-radius:50px;opacity:.9;

@@ -15,7 +15,6 @@ desde la misma red, se **actualiza** su predicción en lugar de duplicarla.
 - **Formulario de predicción**: nombre, fecha, y opcionalmente hora, peso y mensaje.
 - **Tablero compartido** con todas las predicciones (ordenadas por fecha); la tuya
   aparece marcada con la etiqueta **«tú»**.
-- **Galería** para las fotos de la decoración (carpeta `/images`).
 
 ## 🗳️ Cómo funciona la votación
 
@@ -95,12 +94,10 @@ styles.css     → estilos
 script.js      → lógica del front (fechas, votación contra /api)
 server.js      → backend para local / Render (API + almacenamiento en archivo)
 api/           → backend para Vercel (funciones serverless + Vercel KV)
-  _lib.js      → helpers compartidos (KV, cookie, validación)
   votes.js     → GET  /api/votes
   vote.js      → POST /api/vote
 package.json   → scripts y engines
 data/          → votos en local (data/votes.json, ignorado por git)
-images/        → fotos de la decoración (ver images/README.md)
 ```
 
 ## 🔌 API (referencia)

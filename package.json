@@ -1,7 +1,7 @@
 {
-  "name": "quiniela-eliot-jose",
+  "name": "quiniela-diego-andres",
   "version": "1.0.0",
-  "description": "Quiniela de nacimiento para Eliot José: amigos y familia adivinan el día. Voto por IP, sin login.",
+  "description": "Quiniela de nacimiento para Diego Andrés: amigos y familia adivinan el día. Voto por dispositivo, sin login.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

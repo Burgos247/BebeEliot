@@ -157,6 +157,7 @@ const server = http.createServer(async (req, res) => {
     const store = readVotes();
     const mine = store[voterKey(device)] || null;
     return sendJSON(res, 200, {
+      open: process.env.VOTING_OPEN !== '0',
       votes: publicVotes(store),
       you: mine ? { name:mine.name, date:mine.date, time:mine.time, weight:mine.weight, message:mine.message } : null,
     });

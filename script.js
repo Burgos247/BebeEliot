@@ -1,5 +1,5 @@
 /* ===========================================================
-   Quiniela de Nacimiento · Diego Andrés 🐻
+   Quiniela de Nacimiento · Diego Andrés 👶
    Front-end: cálculo de fechas + votación contra la API (/api)
    Una predicción por IP (sin login). Re-votar actualiza la tuya.
    =========================================================== */
@@ -8,8 +8,10 @@
 // Mamá de 32 semanas + 6 días el 2026-09-11 → Fecha Probable de Parto (40 sem)
 const EDD = new Date(2026, 9, 31);            // 31 de octubre de 2026 (mes 9 = octubre)
 
-// Interruptor de la quiniela. false = votaciones cerradas ("ya viene en camino").
+// Estado de la quiniela. El servidor manda (variable de entorno VOTING_OPEN);
+// este es solo el valor por defecto del front mientras carga.
 const VOTING_OPEN = true;
+let votingOpen = VOTING_OPEN;
 
 // 🎉 Nacimiento. Pon BORN = null si aún no ha nacido.
 const BORN = null;                    // fecha de nacimiento (new Date(...)) cuando nazca
@@ -121,6 +123,8 @@ async function loadVotes(){
     if (!res.ok) throw new Error('bad status');
     const data = await res.json();
     myVote = data.you || null;
+    votingOpen = (typeof data.open === 'boolean') ? data.open : VOTING_OPEN;
+    applyVotingState(votingOpen);
     renderPredictions(data.votes || []);
     reflectMyVote();
   } catch {
@@ -199,11 +203,11 @@ function reflectMyVote(){
     $('#time').value    = myVote.time || '';
     $('#weight').value  = myVote.weight || '';
     $('#message').value = myVote.message || '';
-    btn.textContent = 'Actualizar mi predicción 🐻';
+    btn.textContent = 'Actualizar mi predicción 👶';
     note.hidden = false;
     note.textContent = 'Ya registraste tu predicción desde este dispositivo. Puedes editarla y volver a guardar.';
   } else {
-    btn.textContent = 'Guardar mi predicción 🐻';
+    btn.textContent = 'Guardar mi predicción 👶';
     note.hidden = true;
   }
 }
@@ -226,17 +230,20 @@ function toast(msg){
 }
 
 // --- Eventos ---------------------------------------------------------------
+// Muestra u oculta el formulario / aviso según el estado de la quiniela
+function applyVotingState(open){
+  const form = $('#predictionForm');
+  const closed = $('#votingClosed');
+  if (form) form.hidden = !open;
+  if (closed) closed.hidden = !!open;
+}
+
 function setupForm(){
   const form = $('#predictionForm');
 
-  if (!VOTING_OPEN){
-    // Votaciones cerradas: ocultar el formulario y mostrar el aviso
-    form.hidden = true;
-    const closed = $('#votingClosed');
-    if (closed) closed.hidden = false;
-  } else {
-    form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (!votingOpen){ toast('Las predicciones están cerradas. 🍼'); return; }
     const btn = $('#submitBtn');
     const payload = {
       name:    $('#name').value.trim(),
@@ -269,13 +276,12 @@ function setupForm(){
     } finally {
       btn.disabled = false;
     }
-    });
-  }
+  });
 
   // Copiar quiniela
   $('#copyAll').addEventListener('click', async () => {
     const items = [...document.querySelectorAll('#predictionList .pred-item')];
-    const lines = ['🐻 Quiniela de nacimiento · Diego Andrés',
+    const lines = ['👶 Quiniela de nacimiento · Diego Andrés',
                    `Fecha probable de parto: ${$('#eddLong').textContent}`, ''];
     items.forEach(li => {
       const name = li.querySelector('.pred-name').textContent.replace('tú','').trim();
@@ -297,5 +303,6 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCountdown();
   setupDateInput();
   setupForm();
+  applyVotingState(votingOpen);
   loadVotes();
 });

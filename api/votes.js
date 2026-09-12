@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const IP_SALT = process.env.IP_SALT || 'diego-andres-baby-shower';
 const COOKIE  = 'diego_device';
 const KEY     = 'diego:votes';
+const VOTING_OPEN = process.env.VOTING_OPEN !== '0';   // abiertas salvo VOTING_OPEN=0
 const KV_URL   = process.env.KV_REST_API_URL   || process.env.UPSTASH_REDIS_REST_URL   || '';
 const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || '';
 
@@ -64,6 +65,7 @@ module.exports = async (req, res) => {
     const store = await getAll();
     const mine = store[voterKey(device)] || null;
     return send(res, 200, {
+      open: VOTING_OPEN,
       votes: publicVotes(store),
       you: mine ? { name:mine.name, date:mine.date, time:mine.time, weight:mine.weight, message:mine.message } : null,
     });

@@ -1,6 +1,6 @@
-# 🪙 Quiniela de Nacimiento · Babybitcoiner
+# 🪙 Quiniela de Nacimiento · Filippa
 
-Landing page para que amigos y familia adivinen **qué día nacerá Babybitcoiner**.
+Landing page para que amigos y familia adivinen **qué día nacerá Filippa**.
 Gana quien se acerque más a la fecha real. 🧡
 
 La votación es **por IP, sin login**: cada persona escribe su nombre y su

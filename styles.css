@@ -160,6 +160,17 @@ h2{font-size:clamp(1.5rem,5vw,2rem);text-align:center;color:var(--blue-deep);mar
 .pred-del:hover{color:#e08a8a}
 .board-actions{text-align:center;margin-top:22px}
 
+/* ---------- Regalos Lightning ---------- */
+.gifts-sub{text-align:center;color:var(--ink-soft);max-width:520px;margin:0 auto 20px}
+.gift-card{max-width:400px;margin:0 auto;padding:26px 24px;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
+.qr{background:#fff;padding:12px;border-radius:16px;box-shadow:var(--shadow);border:1px solid var(--blue-soft);line-height:0}
+.qr svg{width:210px;height:210px;max-width:60vw;display:block}
+.ln-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}
+.ln-row code{background:var(--blue-mist);border:1px solid var(--blue-soft);padding:9px 12px;border-radius:12px;
+  font-size:.95rem;color:var(--ink);word-break:break-all}
+.gift-open{width:100%;text-decoration:none}
+.gifts-note{font-size:.78rem;color:var(--ink-soft);margin:0}
+
 /* ---------- Footer ---------- */
 .footer{text-align:center;padding:46px 22px 60px;color:var(--ink-soft)}
 .bear-mini{font-size:2.6rem;margin-bottom:8px}

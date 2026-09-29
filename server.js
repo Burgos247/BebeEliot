@@ -1,5 +1,5 @@
 /* ===========================================================
-   Quiniela de Nacimiento · Babybitcoiner 🧸
+   Quiniela de Nacimiento · Filippa 🧸
    Servidor mínimo en Node.js (sin dependencias externas).
    - Sirve el front-end estático (index.html, css, js, /images)
    - API de votación con límite de 1 voto por IP (re-votar = actualizar)
@@ -206,5 +206,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`🪙 Quiniela de Babybitcoiner corriendo en http://localhost:${PORT}`);
+  console.log(`🪙 Quiniela de Filippa corriendo en http://localhost:${PORT}`);
 });

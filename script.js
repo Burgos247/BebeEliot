@@ -1,5 +1,5 @@
 /* ===========================================================
-   Quiniela de Nacimiento · Babybitcoiner 👶
+   Quiniela de Nacimiento · Filippa 👶
    Front-end: cálculo de fechas + votación contra la API (/api)
    Una predicción por IP (sin login). Re-votar actualiza la tuya.
    =========================================================== */
@@ -68,7 +68,7 @@ function renderBorn(){
   const card = document.querySelector('.countdown-card');
   if (card){
     card.innerHTML = `
-      <p class="cd-label">🎉 ¡Babybitcoiner ya nació!</p>
+      <p class="cd-label">🎉 ¡Filippa ya nació!</p>
       <p class="cd-weeks">${BORN.getDate()} de ${MESES_LARGO[BORN.getMonth()]}</p>
       <div class="cd-row">
         <div>
@@ -84,12 +84,12 @@ function renderBorn(){
 
   // Subtítulo del hero
   const heroSub = $('#heroSub');
-  if (heroSub) heroSub.textContent = '¡Bienvenido al mundo, Babybitcoiner! 🎉🧡';
+  if (heroSub) heroSub.textContent = '¡Bienvenida al mundo, Filippa! 🎉🧡';
 
   // Texto de la sección de predicciones
   const playSub = $('#playSub');
   if (playSub){
-    playSub.innerHTML = `Babybitcoiner nació el <strong>${dayLong}</strong>${BORN_TIME ? ` a las <strong>${BORN_TIME}</strong>` : ''}${BORN_WEIGHT ? `, pesando <strong>${BORN_WEIGHT} kg</strong>` : ''}. 🧡 Estas fueron las predicciones, ordenadas de la más cercana a la fecha real:`;
+    playSub.innerHTML = `Filippa nació el <strong>${dayLong}</strong>${BORN_TIME ? ` a las <strong>${BORN_TIME}</strong>` : ''}${BORN_WEIGHT ? `, pesando <strong>${BORN_WEIGHT} kg</strong>` : ''}. 🧡 Estas fueron las predicciones, ordenadas de la más cercana a la fecha real:`;
   }
 
   // Aviso (antes "ya viene en camino")
@@ -97,7 +97,7 @@ function renderBorn(){
   if (closed){
     closed.innerHTML = `
       <span class="closed-emoji">🎉</span>
-      <h3>¡Babybitcoiner ya nació!</h3>
+      <h3>¡Filippa ya nació!</h3>
       <p>Nació el <strong>${dayLong}</strong>${BORN_WEIGHT ? ` · <strong>${BORN_WEIGHT} kg</strong>` : ''}. ¡Gracias a todos por participar! 🧡</p>`;
   }
 }
@@ -281,7 +281,7 @@ function setupForm(){
   // Copiar quiniela
   $('#copyAll').addEventListener('click', async () => {
     const items = [...document.querySelectorAll('#predictionList .pred-item')];
-    const lines = ['👶 Quiniela de nacimiento · Babybitcoiner',
+    const lines = ['👶 Quiniela de nacimiento · Filippa',
                    `Fecha probable de parto: ${$('#eddLong').textContent}`, ''];
     items.forEach(li => {
       const name = li.querySelector('.pred-name').textContent.replace('tú','').trim();
@@ -296,6 +296,19 @@ function setupForm(){
       toast('No se pudo copiar automáticamente');
     }
   });
+
+  // Copiar dirección Lightning de Filippa
+  const copyLn = $('#copyLn');
+  if (copyLn){
+    copyLn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('filippa@lawallet.io');
+        toast('Dirección Lightning copiada ⚡');
+      } catch {
+        toast('No se pudo copiar');
+      }
+    });
+  }
 }
 
 // --- Init ------------------------------------------------------------------

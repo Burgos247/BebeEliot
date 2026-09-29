@@ -1,7 +1,7 @@
-# 🧸 Quiniela de Nacimiento · Diego Andrés
+# 🪙 Quiniela de Nacimiento · Babybitcoiner
 
-Landing page para que amigos y familia adivinen **qué día nacerá Diego Andrés**.
-Gana quien se acerque más a la fecha real. 💙
+Landing page para que amigos y familia adivinen **qué día nacerá Babybitcoiner**.
+Gana quien se acerque más a la fecha real. 🧡
 
 La votación es **por IP, sin login**: cada persona escribe su nombre y su
 pronóstico. Se permite **una predicción por conexión (IP)**; si vuelven a votar
@@ -9,7 +9,7 @@ desde la misma red, se **actualiza** su predicción en lugar de duplicarla.
 
 ## ✨ Qué incluye
 
-- **Osito protagonista** (ilustración SVG con moño azul, a juego con la decoración).
+- **Moneda de Bitcoin** (ilustración SVG, tema naranja ₿).
 - **Contador**: semanas de embarazo y días para la fecha probable de parto (FPP),
   calculados automáticamente.
 - **Formulario de predicción**: nombre, fecha, y opcionalmente hora, peso y mensaje.
@@ -76,8 +76,8 @@ como `node server.js` (o `npm start`); el puerto se toma de `PORT`.
 
 ## 📅 Datos del cálculo
 
-- Mamá de **32 semanas + 6 días** el **11 de septiembre de 2026**.
-- **Fecha probable de parto (40 semanas): 31 de octubre de 2026.**
+- Mamá de **38 semanas** el **29 de septiembre de 2026**.
+- **Fecha probable de parto (40 semanas): 13 de octubre de 2026.**
 - **Votaciones abiertas.** Interruptores en `script.js`: `VOTING_OPEN` (true/false) y
   `BORN` (fecha de nacimiento cuando nazca, o `null`). En el servidor, cerrar con la
   variable de entorno `VOTING_OPEN=0`.

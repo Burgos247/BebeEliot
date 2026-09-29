@@ -1,5 +1,5 @@
 /* ===========================================================
-   Quiniela de Nacimiento · Diego Andrés 🧸
+   Quiniela de Nacimiento · Babybitcoiner 🧸
    Servidor mínimo en Node.js (sin dependencias externas).
    - Sirve el front-end estático (index.html, css, js, /images)
    - API de votación con límite de 1 voto por IP (re-votar = actualizar)
@@ -17,7 +17,7 @@ const DATA_DIR = path.join(ROOT, 'data');
 const DATA_FILE = path.join(DATA_DIR, 'votes.json');
 
 // Sal para el hash de IPs (cámbiala con la variable de entorno IP_SALT si quieres).
-const IP_SALT = process.env.IP_SALT || 'diego-andres-baby-shower';
+const IP_SALT = process.env.IP_SALT || 'babybitcoiner-baby-shower';
 
 const MIME = {
   '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8',
@@ -52,7 +52,7 @@ function writeVotes(v){
 // cookie. Ese token es la clave del voto, así varias personas en la MISMA red
 // Wi-Fi (misma IP) pueden votar cada una. La IP se guarda hasheada solo como
 // dato de referencia, nunca en texto plano.
-const COOKIE = 'diego_device';
+const COOKIE = 'bitcoiner_device';
 
 function getIP(req){
   const xff = req.headers['x-forwarded-for'];           // detrás de proxy/hosting
@@ -206,5 +206,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`🧸 Quiniela de Diego Andrés corriendo en http://localhost:${PORT}`);
+  console.log(`🪙 Quiniela de Babybitcoiner corriendo en http://localhost:${PORT}`);
 });

@@ -1,16 +1,16 @@
 :root{
-  /* Paleta miel (Winnie the Pooh). Nombres antiguos conservados = valores nuevos. */
-  --blue-deep:#c9801e;   /* ámbar/miel oscura — títulos y acentos */
-  --blue:#f4b63a;        /* dorado miel — botones */
-  --blue-soft:#f6dc98;   /* miel suave — bordes y chips */
-  --blue-mist:#fdf4da;   /* miel muy clara — fondos de input/chip */
+  /* Paleta naranja Bitcoin. Nombres antiguos conservados = valores nuevos. */
+  --blue-deep:#d9791c;   /* naranja Bitcoin oscuro — títulos y acentos */
+  --blue:#f7931a;        /* naranja Bitcoin — botones */
+  --blue-soft:#ffd9a8;   /* naranja suave — bordes y chips */
+  --blue-mist:#fff3e0;   /* naranja muy claro — fondos de input/chip */
   --beige:#e7cfa9;
   --beige-soft:#f6ead4;
-  --ink:#5b4526;         /* marrón cálido — texto */
-  --ink-soft:#a58a63;    /* marrón suave */
+  --ink:#40372e;         /* gris cálido oscuro — texto */
+  --ink-soft:#8a7d6b;    /* gris cálido suave */
   --white:#ffffff;
-  --red:#df4a3d;         /* rojo camiseta de Pooh (acento) */
-  --shadow:0 14px 40px rgba(196,142,52,.20);
+  --red:#e0533f;         /* acento */
+  --shadow:0 14px 40px rgba(217,120,15,.20);
   --radius:22px;
 }
 
@@ -21,7 +21,7 @@ body{
   margin:0;
   font-family:'Quicksand',system-ui,sans-serif;
   color:var(--ink);
-  background:linear-gradient(180deg,#fdf4dc 0%,#fef8e8 45%,#fffaf0 100%);
+  background:linear-gradient(180deg,#fff1db 0%,#fff8ee 45%,#fffcf8 100%);
   overflow-x:hidden;
   line-height:1.55;
 }
@@ -29,10 +29,10 @@ h1,h2,h3{font-family:'Baloo 2',cursive;margin:0;line-height:1.15}
 a{color:inherit}
 img{max-width:100%;display:block}
 
-/* ---------- Decoración: abejas, miel y corazones ---------- */
+/* ---------- Decoración: monedas y corazones ---------- */
 .sky{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .floaty{position:absolute;line-height:1;opacity:.9;
-  animation:float 9s ease-in-out infinite;filter:drop-shadow(0 4px 6px rgba(196,142,52,.18))}
+  animation:float 9s ease-in-out infinite;filter:drop-shadow(0 4px 6px rgba(217,120,15,.18))}
 .floaty.f1{top:12%;left:6%;font-size:2rem}
 .floaty.f2{top:25%;right:8%;font-size:1.6rem;animation-delay:1.4s}
 .floaty.f3{top:58%;left:5%;font-size:2rem;animation-delay:.8s}
@@ -59,17 +59,17 @@ h2{font-size:clamp(1.5rem,5vw,2rem);text-align:center;color:var(--blue-deep);mar
 .hero{text-align:center;padding-top:26px}
 .eyebrow{position:relative;z-index:6;display:inline-block;letter-spacing:.14em;text-transform:uppercase;
   font-size:.74rem;font-weight:700;color:var(--blue-deep);margin:0 auto;
-  background:rgba(255,255,255,.6);padding:6px 16px;border-radius:50px;box-shadow:0 4px 14px rgba(196,142,52,.12)}
+  background:rgba(255,255,255,.6);padding:6px 16px;border-radius:50px;box-shadow:0 4px 14px rgba(217,120,15,.12)}
 .bear-stage{position:relative;margin:4px auto 0;z-index:2;
   animation:bobble 5s ease-in-out infinite}
 @keyframes bobble{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-9px) rotate(1deg)}}
-.bear{position:relative;z-index:3;display:block;width:auto;height:330px;max-width:88%;margin:0 auto;
-  filter:drop-shadow(0 12px 14px rgba(196,142,52,.30))}
-@media (max-width:480px){ .bear{height:290px} }
+.bear{position:relative;z-index:3;display:block;width:262px;height:auto;max-width:86%;margin:0 auto;
+  filter:drop-shadow(0 12px 16px rgba(217,120,15,.35))}
+@media (max-width:480px){ .bear{width:220px} }
 
 /* Nubes del hero */
 .hero-cloud{position:absolute;z-index:1;background:#fff;border-radius:50px;opacity:.9;
-  box-shadow:0 8px 18px rgba(196,142,52,.12)}
+  box-shadow:0 8px 18px rgba(217,120,15,.12)}
 .hero-cloud::before,.hero-cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
 .hero-cloud.hc1{width:96px;height:30px;left:-48px;top:96px}
 .hero-cloud.hc1::before{width:42px;height:42px;top:-20px;left:14px}
@@ -100,8 +100,8 @@ h2{font-size:clamp(1.5rem,5vw,2rem);text-align:center;color:var(--blue-deep);mar
   font-size:1.05rem;padding:14px 28px;border-radius:50px;transition:transform .15s ease,box-shadow .15s ease;text-decoration:none}
 .btn:active{transform:scale(.97)}
 .btn-primary{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-deep) 100%);color:#fff;
-  box-shadow:0 10px 22px rgba(196,142,52,.4)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(196,142,52,.5)}
+  box-shadow:0 10px 22px rgba(217,120,15,.4)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(217,120,15,.5)}
 .btn-hero{margin-top:4px}
 .btn-ghost{background:#fff;color:var(--blue-deep);border:2px solid var(--blue-soft)}
 .btn-ghost:hover{background:var(--blue-mist)}

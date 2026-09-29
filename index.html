@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quiniela de Nacimiento · Diego Andrés 👶</title>
-  <meta name="description" content="¿Cuándo nacerá Diego Andrés? Participa en la quiniela y adivina el día. ¡Gana quien se acerque más!" />
+  <title>Quiniela de Nacimiento · Babybitcoiner 👶</title>
+  <meta name="description" content="¿Cuándo nacerá Babybitcoiner? Participa en la quiniela y adivina el día. ¡Gana quien se acerque más!" />
 
   <!-- Open Graph para compartir el enlace -->
-  <meta property="og:title" content="¿Cuándo nacerá Diego Andrés? 👶" />
+  <meta property="og:title" content="¿Cuándo nacerá Babybitcoiner? 👶" />
   <meta property="og:description" content="Participa en la quiniela del nacimiento. Adivina el día y gana quien más se acerque." />
   <meta property="og:type" content="website" />
 
@@ -15,17 +15,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👶</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪙</text></svg>" />
 </head>
 <body>
 
   <!-- Globos / nubes decorativas de fondo -->
   <div class="sky" aria-hidden="true">
-    <span class="floaty f1">🐝</span>
-    <span class="floaty f2">💛</span>
-    <span class="floaty f3">🍯</span>
-    <span class="floaty f4">🐝</span>
-    <span class="floaty f5">💛</span>
+    <span class="floaty f1">🪙</span>
+    <span class="floaty f2">🧡</span>
+    <span class="floaty f3">💰</span>
+    <span class="floaty f4">🪙</span>
+    <span class="floaty f5">🧡</span>
     <span class="cloud c1"></span>
     <span class="cloud c2"></span>
     <span class="cloud c3"></span>
@@ -37,19 +37,58 @@
 
     <div class="bear-stage">
 
-      <!-- Osito protagonista (SVG) -->
-      <img class="bear" src="images/pooh.png" alt="Osito Pooh — Mi Baby Shower" />
+      <!-- Moneda de Bitcoin (SVG) -->
+      <svg class="bear" viewBox="0 0 240 240" role="img" aria-label="Moneda de Bitcoin">
+        <defs>
+          <radialGradient id="coin" cx="38%" cy="30%" r="80%">
+            <stop offset="0%" stop-color="#ffd089"/>
+            <stop offset="55%" stop-color="#f7931a"/>
+            <stop offset="100%" stop-color="#d9791c"/>
+          </radialGradient>
+          <radialGradient id="coinFace" cx="42%" cy="34%" r="76%">
+            <stop offset="0%" stop-color="#ffc770"/>
+            <stop offset="100%" stop-color="#f4881c"/>
+          </radialGradient>
+        </defs>
+
+        <!-- monedas detrás -->
+        <circle cx="56" cy="152" r="44" fill="#e8850f"/>
+        <circle cx="56" cy="152" r="44" fill="none" stroke="#c76d0c" stroke-width="5"/>
+        <circle cx="188" cy="142" r="38" fill="#e8850f"/>
+        <circle cx="188" cy="142" r="38" fill="none" stroke="#c76d0c" stroke-width="5"/>
+
+        <!-- moneda principal -->
+        <circle cx="120" cy="116" r="98" fill="url(#coin)"/>
+        <circle cx="120" cy="116" r="98" fill="none" stroke="#c76d0c" stroke-width="7"/>
+        <circle cx="120" cy="116" r="82" fill="url(#coinFace)"/>
+        <circle cx="120" cy="116" r="82" fill="none" stroke="#ffe0b0" stroke-width="2" opacity="0.6"/>
+
+        <!-- brillo -->
+        <ellipse cx="86" cy="76" rx="26" ry="15" fill="#fff" opacity="0.30" transform="rotate(-30 86 76)"/>
+
+        <!-- símbolo ₿ (B con dos barras verticales) -->
+        <text x="120" y="120" text-anchor="middle" dominant-baseline="central"
+              font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="104" fill="#fff">B</text>
+        <rect x="106" y="56" width="7.5" height="120" rx="3.5" fill="#fff"/>
+        <rect x="122" y="56" width="7.5" height="120" rx="3.5" fill="#fff"/>
+
+        <!-- destellos -->
+        <g fill="#fff4d9">
+          <path d="M198 62 l2.2 5.5 l5.5 2.2 l-5.5 2.2 l-2.2 5.5 l-2.2 -5.5 l-5.5 -2.2 l5.5 -2.2 Z"/>
+          <path d="M40 96 l1.7 4.3 l4.3 1.7 l-4.3 1.7 l-1.7 4.3 l-1.7 -4.3 l-4.3 -1.7 l4.3 -1.7 Z"/>
+        </g>
+      </svg>
     </div>
 
-    <h1 class="title">Diego Andrés</h1>
-    <p class="subtitle" id="heroSub">¿Qué día llegará nuestro osito? 👶🍯</p>
+    <h1 class="title">Babybitcoiner</h1>
+    <p class="subtitle" id="heroSub">¿Qué día llegará nuestro bitcoiner? 👶💰</p>
 
     <div class="countdown-card">
       <p class="cd-label">Mamá está de</p>
-      <p class="cd-weeks"><strong id="currentWeeks">32</strong> semanas</p>
+      <p class="cd-weeks"><strong id="currentWeeks">38</strong> semanas</p>
       <div class="cd-row">
         <div>
-          <span class="cd-num" id="edd">31 oct</span>
+          <span class="cd-num" id="edd">13 oct</span>
           <span class="cd-cap">Fecha probable de parto</span>
         </div>
         <div>
@@ -69,7 +108,7 @@
       <div class="step">
         <span class="step-emoji">📅</span>
         <h3>Elige una fecha</h3>
-        <p>Adivina el día en que crees que nacerá Diego Andrés.</p>
+        <p>Adivina el día en que crees que nacerá Babybitcoiner.</p>
       </div>
       <div class="step">
         <span class="step-emoji">👶</span>
@@ -87,13 +126,13 @@
   <!-- ================= FORMULARIO / QUINIELA ================= -->
   <section id="jugar" class="play">
     <h2>Tu predicción</h2>
-    <p class="play-sub" id="playSub">La mamá está de <strong id="weeksNow">32</strong> semanas. La fecha probable de parto es alrededor del <strong id="eddLong">31 de octubre de 2026</strong>, ¡pero los bebés deciden! 😉</p>
+    <p class="play-sub" id="playSub">La mamá está de <strong id="weeksNow">38</strong> semanas. La fecha probable de parto es alrededor del <strong id="eddLong">13 de octubre de 2026</strong>, ¡pero los bebés deciden! 😉</p>
 
     <!-- Aviso de votaciones cerradas (se muestra cuando VOTING_OPEN = false) -->
     <div id="votingClosed" class="closed-banner card" hidden>
       <span class="closed-emoji">🍼</span>
       <h3>¡Ya viene en camino!</h3>
-      <p>Las predicciones están cerradas. ¡Gracias a todos por participar! 💛</p>
+      <p>Las predicciones están cerradas. ¡Gracias a todos por participar! 🧡</p>
     </div>
 
     <form id="predictionForm" class="card form" autocomplete="off">
@@ -120,8 +159,8 @@
       </div>
 
       <label>
-        <span>Mensaje para Diego Andrés (opcional)</span>
-        <textarea id="message" name="message" rows="2" maxlength="160" placeholder="¡Te esperamos con mucho amor! 💛"></textarea>
+        <span>Mensaje para Babybitcoiner (opcional)</span>
+        <textarea id="message" name="message" rows="2" maxlength="160" placeholder="¡Te esperamos con mucho amor! 🧡"></textarea>
       </label>
 
       <button type="submit" class="btn btn-primary" id="submitBtn">Guardar mi predicción 👶</button>
@@ -142,8 +181,8 @@
 
   <footer class="footer">
     <div class="bear-mini" aria-hidden="true">👶</div>
-    <p>Con mucho amor para <strong>Diego Andrés</strong></p>
-    <p class="footer-small">Quiniela de nacimiento · Baby Shower 💛</p>
+    <p>Con mucho amor para <strong>Babybitcoiner</strong></p>
+    <p class="footer-small">Quiniela de nacimiento · Baby Shower 🧡</p>
   </footer>
 
   <script src="script.js"></script>

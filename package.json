@@ -1,7 +1,7 @@
 {
-  "name": "quiniela-diego-andres",
+  "name": "quiniela-babybitcoiner",
   "version": "1.0.0",
-  "description": "Quiniela de nacimiento para Diego Andrés: amigos y familia adivinan el día. Voto por dispositivo, sin login.",
+  "description": "Quiniela de nacimiento para Babybitcoiner: amigos y familia adivinan el día. Voto por dispositivo, sin login.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

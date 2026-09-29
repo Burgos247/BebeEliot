@@ -43,47 +43,26 @@
 
     <div class="bear-stage">
 
-      <!-- Moneda de Bitcoin (SVG) -->
-      <svg class="bear" viewBox="0 0 240 240" role="img" aria-label="Moneda de Bitcoin">
-        <defs>
-          <radialGradient id="coin" cx="38%" cy="30%" r="80%">
-            <stop offset="0%" stop-color="#ffd089"/>
-            <stop offset="55%" stop-color="#f7931a"/>
-            <stop offset="100%" stop-color="#d9791c"/>
-          </radialGradient>
-          <radialGradient id="coinFace" cx="42%" cy="34%" r="76%">
-            <stop offset="0%" stop-color="#ffc770"/>
-            <stop offset="100%" stop-color="#f4881c"/>
-          </radialGradient>
-        </defs>
-
-        <!-- monedas detrás -->
-        <circle cx="56" cy="152" r="44" fill="#e8850f"/>
-        <circle cx="56" cy="152" r="44" fill="none" stroke="#c76d0c" stroke-width="5"/>
-        <circle cx="188" cy="142" r="38" fill="#e8850f"/>
-        <circle cx="188" cy="142" r="38" fill="none" stroke="#c76d0c" stroke-width="5"/>
-
-        <!-- moneda principal -->
-        <circle cx="120" cy="116" r="98" fill="url(#coin)"/>
-        <circle cx="120" cy="116" r="98" fill="none" stroke="#c76d0c" stroke-width="7"/>
-        <circle cx="120" cy="116" r="82" fill="url(#coinFace)"/>
-        <circle cx="120" cy="116" r="82" fill="none" stroke="#ffe0b0" stroke-width="2" opacity="0.6"/>
-
-        <!-- brillo -->
-        <ellipse cx="86" cy="76" rx="26" ry="15" fill="#fff" opacity="0.30" transform="rotate(-30 86 76)"/>
-
-        <!-- símbolo ₿ (B con dos barras verticales) -->
-        <text x="120" y="120" text-anchor="middle" dominant-baseline="central"
-              font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="104" fill="#fff">B</text>
-        <rect x="106" y="56" width="7.5" height="120" rx="3.5" fill="#fff"/>
-        <rect x="122" y="56" width="7.5" height="120" rx="3.5" fill="#fff"/>
-
-        <!-- destellos -->
-        <g fill="#fff4d9">
-          <path d="M198 62 l2.2 5.5 l5.5 2.2 l-5.5 2.2 l-2.2 5.5 l-2.2 -5.5 l-5.5 -2.2 l5.5 -2.2 Z"/>
-          <path d="M40 96 l1.7 4.3 l4.3 1.7 l-4.3 1.7 l-1.7 4.3 l-1.7 -4.3 l-4.3 -1.7 l4.3 -1.7 Z"/>
-        </g>
-      </svg>
+      <!-- Mascota: honey badger + moneda de Bitcoin -->
+      <div class="mascot">
+        <img class="badger" src="images/honeybadger.png" alt="Honey badger, la mascota Bitcoin" />
+        <svg class="btc-badge" viewBox="0 0 100 100" role="img" aria-label="Bitcoin">
+          <defs>
+            <radialGradient id="bcoin" cx="38%" cy="32%" r="80%">
+              <stop offset="0%" stop-color="#ffd089"/>
+              <stop offset="55%" stop-color="#f7931a"/>
+              <stop offset="100%" stop-color="#d9791c"/>
+            </radialGradient>
+          </defs>
+          <circle cx="50" cy="50" r="46" fill="url(#bcoin)"/>
+          <circle cx="50" cy="50" r="46" fill="none" stroke="#c76d0c" stroke-width="4"/>
+          <circle cx="50" cy="50" r="37" fill="none" stroke="#ffe0b0" stroke-width="1.5" opacity="0.6"/>
+          <ellipse cx="36" cy="30" rx="12" ry="7" fill="#fff" opacity="0.30" transform="rotate(-30 36 30)"/>
+          <text x="50" y="52" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="46" fill="#fff">B</text>
+          <rect x="43.4" y="24" width="3.2" height="52" rx="1.6" fill="#fff"/>
+          <rect x="50.6" y="24" width="3.2" height="52" rx="1.6" fill="#fff"/>
+        </svg>
+      </div>
     </div>
 
     <h1 class="title">BabyBitcoiner</h1>

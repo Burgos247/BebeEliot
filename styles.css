@@ -42,6 +42,8 @@ img{max-width:100%;display:block}
 .floaty.f7{top:15%;right:15%;font-size:1.5rem;animation-delay:1.8s}
 .floaty.f8{top:80%;left:11%;font-size:1.6rem;animation-delay:2.6s}
 .floaty.f9{top:60%;right:9%;font-size:1.5rem;animation-delay:.9s}
+.floaty.f10{top:88%;right:14%;font-size:1.5rem;animation-delay:1.5s}
+.floaty.f11{top:7%;left:44%;font-size:1.3rem;opacity:.75;animation-delay:2.2s}
 .cloud{position:absolute;background:#fff;border-radius:50px;opacity:.6;filter:blur(.3px)}
 .cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
 .cloud.c1{width:120px;height:34px;top:16%;left:18%}

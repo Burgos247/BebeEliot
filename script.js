@@ -1,5 +1,5 @@
 /* ===========================================================
-   Quiniela de Nacimiento · Filippa 👶
+   Quiniela de Nacimiento · Filippa 👧
    Front-end: cálculo de fechas + votación contra la API (/api)
    Una predicción por IP (sin login). Re-votar actualiza la tuya.
    =========================================================== */
@@ -203,11 +203,11 @@ function reflectMyVote(){
     $('#time').value    = myVote.time || '';
     $('#weight').value  = myVote.weight || '';
     $('#message').value = myVote.message || '';
-    btn.textContent = 'Actualizar mi predicción 👶';
+    btn.textContent = 'Actualizar mi predicción 👧';
     note.hidden = false;
     note.textContent = 'Ya registraste tu predicción desde este dispositivo. Puedes editarla y volver a guardar.';
   } else {
-    btn.textContent = 'Guardar mi predicción 👶';
+    btn.textContent = 'Guardar mi predicción 👧';
     note.hidden = true;
   }
 }
@@ -281,7 +281,7 @@ function setupForm(){
   // Copiar quiniela
   $('#copyAll').addEventListener('click', async () => {
     const items = [...document.querySelectorAll('#predictionList .pred-item')];
-    const lines = ['👶 Quiniela de nacimiento · Filippa',
+    const lines = ['👧 Quiniela de nacimiento · Filippa',
                    `Fecha probable de parto: ${$('#eddLong').textContent}`, ''];
     items.forEach(li => {
       const name = li.querySelector('.pred-name').textContent.replace('tú','').trim();

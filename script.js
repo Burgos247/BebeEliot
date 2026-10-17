@@ -5,8 +5,8 @@
    =========================================================== */
 
 // --- Configuración base ---------------------------------------------------
-// Mamá de 31 semanas el 2026-10-17 → Fecha Probable de Parto (40 sem)
-const EDD = new Date(2026, 11, 19);           // 19 de diciembre de 2026 (mes 11 = diciembre)
+// Mamá de 34 semanas + 2 días el 2026-10-17 → Fecha Probable de Parto (40 sem)
+const EDD = new Date(2026, 10, 26);           // 26 de noviembre de 2026 (mes 10 = noviembre)
 
 // Estado de la quiniela. El servidor manda (variable de entorno VOTING_OPEN);
 // este es solo el valor por defecto del front mientras carga.

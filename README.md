@@ -76,8 +76,8 @@ como `node server.js` (o `npm start`); el puerto se toma de `PORT`.
 
 ## 📅 Datos del cálculo
 
-- Mamá de **31 semanas** el **17 de octubre de 2026**.
-- **Fecha probable de parto (40 semanas): 19 de diciembre de 2026.**
+- Mamá de **34 semanas + 2 días** el **17 de octubre de 2026**.
+- **Fecha probable de parto (40 semanas): 26 de noviembre de 2026.**
 - **Votaciones abiertas.** Interruptores en `script.js`: `VOTING_OPEN` (true/false) y
   `BORN` (fecha de nacimiento cuando nazca, o `null`). En el servidor, cerrar con la
   variable de entorno `VOTING_OPEN=0`.

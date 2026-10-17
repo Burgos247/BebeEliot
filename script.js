@@ -1,12 +1,12 @@
 /* ===========================================================
-   Quiniela de Nacimiento · Diego Andrés 👶
+   Quiniela de Nacimiento · Santi 🐥
    Front-end: cálculo de fechas + votación contra la API (/api)
    Una predicción por IP (sin login). Re-votar actualiza la tuya.
    =========================================================== */
 
 // --- Configuración base ---------------------------------------------------
-// Mamá de 32 semanas + 6 días el 2026-09-11 → Fecha Probable de Parto (40 sem)
-const EDD = new Date(2026, 9, 31);            // 31 de octubre de 2026 (mes 9 = octubre)
+// Mamá de 31 semanas el 2026-10-17 → Fecha Probable de Parto (40 sem)
+const EDD = new Date(2026, 11, 19);           // 19 de diciembre de 2026 (mes 11 = diciembre)
 
 // Estado de la quiniela. El servidor manda (variable de entorno VOTING_OPEN);
 // este es solo el valor por defecto del front mientras carga.
@@ -68,7 +68,7 @@ function renderBorn(){
   const card = document.querySelector('.countdown-card');
   if (card){
     card.innerHTML = `
-      <p class="cd-label">🎉 ¡Diego Andrés ya nació!</p>
+      <p class="cd-label">🎉 ¡Santi ya nació!</p>
       <p class="cd-weeks">${BORN.getDate()} de ${MESES_LARGO[BORN.getMonth()]}</p>
       <div class="cd-row">
         <div>
@@ -84,12 +84,12 @@ function renderBorn(){
 
   // Subtítulo del hero
   const heroSub = $('#heroSub');
-  if (heroSub) heroSub.textContent = '¡Bienvenido al mundo, Diego Andrés! 🎉💛';
+  if (heroSub) heroSub.textContent = '¡Bienvenido al mundo, Santi! 🐣💛';
 
   // Texto de la sección de predicciones
   const playSub = $('#playSub');
   if (playSub){
-    playSub.innerHTML = `Diego Andrés nació el <strong>${dayLong}</strong>${BORN_TIME ? ` a las <strong>${BORN_TIME}</strong>` : ''}${BORN_WEIGHT ? `, pesando <strong>${BORN_WEIGHT} kg</strong>` : ''}. 💛 Estas fueron las predicciones, ordenadas de la más cercana a la fecha real:`;
+    playSub.innerHTML = `Santi nació el <strong>${dayLong}</strong>${BORN_TIME ? ` a las <strong>${BORN_TIME}</strong>` : ''}${BORN_WEIGHT ? `, pesando <strong>${BORN_WEIGHT} kg</strong>` : ''}. 💛 Estas fueron las predicciones, ordenadas de la más cercana a la fecha real:`;
   }
 
   // Aviso (antes "ya viene en camino")
@@ -97,7 +97,7 @@ function renderBorn(){
   if (closed){
     closed.innerHTML = `
       <span class="closed-emoji">🎉</span>
-      <h3>¡Diego Andrés ya nació!</h3>
+      <h3>¡Santi ya nació!</h3>
       <p>Nació el <strong>${dayLong}</strong>${BORN_WEIGHT ? ` · <strong>${BORN_WEIGHT} kg</strong>` : ''}. ¡Gracias a todos por participar! 💛</p>`;
   }
 }
@@ -203,11 +203,11 @@ function reflectMyVote(){
     $('#time').value    = myVote.time || '';
     $('#weight').value  = myVote.weight || '';
     $('#message').value = myVote.message || '';
-    btn.textContent = 'Actualizar mi predicción 👶';
+    btn.textContent = 'Actualizar mi predicción 🐥';
     note.hidden = false;
     note.textContent = 'Ya registraste tu predicción desde este dispositivo. Puedes editarla y volver a guardar.';
   } else {
-    btn.textContent = 'Guardar mi predicción 👶';
+    btn.textContent = 'Guardar mi predicción 🐥';
     note.hidden = true;
   }
 }
@@ -281,7 +281,7 @@ function setupForm(){
   // Copiar quiniela
   $('#copyAll').addEventListener('click', async () => {
     const items = [...document.querySelectorAll('#predictionList .pred-item')];
-    const lines = ['👶 Quiniela de nacimiento · Diego Andrés',
+    const lines = ['🐥 Quiniela de nacimiento · Santi',
                    `Fecha probable de parto: ${$('#eddLong').textContent}`, ''];
     items.forEach(li => {
       const name = li.querySelector('.pred-name').textContent.replace('tú','').trim();

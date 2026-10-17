@@ -1,6 +1,6 @@
-# 🧸 Quiniela de Nacimiento · Diego Andrés
+# 🐥 Quiniela de Nacimiento · Santi
 
-Landing page para que amigos y familia adivinen **qué día nacerá Diego Andrés**.
+Landing page para que amigos y familia adivinen **qué día nacerá Santi**.
 Gana quien se acerque más a la fecha real. 💙
 
 La votación es **por IP, sin login**: cada persona escribe su nombre y su
@@ -9,7 +9,7 @@ desde la misma red, se **actualiza** su predicción en lugar de duplicarla.
 
 ## ✨ Qué incluye
 
-- **Osito protagonista** (ilustración SVG con moño azul, a juego con la decoración).
+- **Pollito protagonista** (ilustración SVG de un pollito saliendo del cascarón).
 - **Contador**: semanas de embarazo y días para la fecha probable de parto (FPP),
   calculados automáticamente.
 - **Formulario de predicción**: nombre, fecha, y opcionalmente hora, peso y mensaje.
@@ -76,8 +76,8 @@ como `node server.js` (o `npm start`); el puerto se toma de `PORT`.
 
 ## 📅 Datos del cálculo
 
-- Mamá de **32 semanas + 6 días** el **11 de septiembre de 2026**.
-- **Fecha probable de parto (40 semanas): 31 de octubre de 2026.**
+- Mamá de **31 semanas** el **17 de octubre de 2026**.
+- **Fecha probable de parto (40 semanas): 19 de diciembre de 2026.**
 - **Votaciones abiertas.** Interruptores en `script.js`: `VOTING_OPEN` (true/false) y
   `BORN` (fecha de nacimiento cuando nazca, o `null`). En el servidor, cerrar con la
   variable de entorno `VOTING_OPEN=0`.

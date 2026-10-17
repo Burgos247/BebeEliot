@@ -262,7 +262,7 @@ function setupForm(){
         myVote = data.you;
         renderPredictions(data.votes || []);
         reflectMyVote();
-        toast(data.updated ? '¡Predicción actualizada! ✨' : '¡Predicción guardada! 🎈');
+        toast(data.updated ? '¡Predicción actualizada! ✨' : '¡Predicción guardada! 🐣');
         $('.board').scrollIntoView({ behavior:'smooth' });
         return;
       }

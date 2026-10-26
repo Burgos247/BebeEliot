@@ -3,9 +3,9 @@
    Función autocontenida (sin imports locales) para máxima compatibilidad con Vercel. */
 const crypto = require('crypto');
 
-const IP_SALT = process.env.IP_SALT || 'diego-andres-baby-shower';
-const COOKIE  = 'diego_device';
-const KEY     = 'diego:votes';
+const IP_SALT = process.env.IP_SALT || 'test-baby-shower';
+const COOKIE  = 'test_device';
+const KEY     = 'test:votes';
 // Votaciones ABIERTAS por defecto. Pon la variable de entorno VOTING_OPEN=0 para cerrarlas.
 const VOTING_OPEN = process.env.VOTING_OPEN !== '0';
 const KV_URL   = process.env.KV_REST_API_URL   || process.env.UPSTASH_REDIS_REST_URL   || '';

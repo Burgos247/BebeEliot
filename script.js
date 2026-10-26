@@ -10,7 +10,7 @@ const EDD = new Date(2026, 9, 31);            // 31 de octubre de 2026 (mes 9 = 
 
 // Estado de la quiniela. El servidor manda (variable de entorno VOTING_OPEN);
 // este es solo el valor por defecto del front mientras carga.
-const VOTING_OPEN = true;
+const VOTING_OPEN = false;
 let votingOpen = VOTING_OPEN;
 
 // 🎉 Nacimiento. Pon BORN = null si aún no ha nacido.

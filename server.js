@@ -157,7 +157,7 @@ const server = http.createServer(async (req, res) => {
     const store = readVotes();
     const mine = store[voterKey(device)] || null;
     return sendJSON(res, 200, {
-      open: process.env.VOTING_OPEN !== '0',
+      open: process.env.VOTING_OPEN === '1',
       votes: publicVotes(store),
       you: mine ? { name:mine.name, date:mine.date, time:mine.time, weight:mine.weight, message:mine.message } : null,
     });
@@ -165,7 +165,7 @@ const server = http.createServer(async (req, res) => {
 
   // POST /api/vote → registra o actualiza el voto de este dispositivo
   if (req.method === 'POST' && url === '/api/vote'){
-    if (process.env.VOTING_OPEN === '0'){
+    if (process.env.VOTING_OPEN !== '1'){
       return sendJSON(res, 403, { ok:false, errors:['Las predicciones están cerradas. ¡Ya viene en camino! 🍼'] });
     }
     try {

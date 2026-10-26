@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const IP_SALT = process.env.IP_SALT || 'diego-andres-baby-shower';
 const COOKIE  = 'diego_device';
 const KEY     = 'diego:votes';
-const VOTING_OPEN = process.env.VOTING_OPEN !== '0';   // abiertas salvo VOTING_OPEN=0
+const VOTING_OPEN = process.env.VOTING_OPEN === '1';   // CERRADAS; reabrir con VOTING_OPEN=1
 const KV_URL   = process.env.KV_REST_API_URL   || process.env.UPSTASH_REDIS_REST_URL   || '';
 const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || '';
 
